@@ -1,3 +1,5 @@
 framework:
     mailer:
+        envelope:
+            sender: 'damien.lataste@lapiscine.pro'
         dsn: '%env(MAILER_DSN)%'

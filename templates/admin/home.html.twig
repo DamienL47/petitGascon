@@ -1,0 +1,25 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %} Tableau de bord {% endblock %}
+
+{% block header %}
+    <div class="bandeau">
+        <h3>Bienvenue {{ app.user.prenom }}</h3>
+        <a href="{{ path('app_logout') }}">Déconnexion</a>
+    </div>
+    <div class="dashboard">
+        <nav class="navBarAdmin">
+            <a class="onglet" href="{{ path('home') }}">Accueil</a>
+            <a class="onglet" href="{{ path('admin_dashboard')}}"> Tableau de bord </a>
+            <a class="onglet" href="{{ path('create_admin')}}">Nouvel Admin</a>
+            <a class="onglet" href="{{ path('admin_list')}}">Liste des admins</a>
+        </nav>
+    </div>
+{% endblock %}
+
+{% block main %}
+    <section class="content">
+        <h2>Tableau de bord️</h2>
+    </section>
+{% endblock %}
+
