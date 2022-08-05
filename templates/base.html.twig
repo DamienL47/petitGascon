@@ -17,12 +17,12 @@
     <header>
         {% block header %}
             <nav class="navBar">
-                <a href="{{ path('home') }}">Accueil</a>
-                {% if app.session %}
-                    <a href="{{ path('app_login') }}">Connexion</a>
-                {% else %}
-                    <a href="{{ path('admin_list') }}">Liste Admin</a>
+                {% if app.session.started %}
+                    <a href="{{ path('admin_dashboard') }}">Tableau de bord</a>
                     <a href="{{ path('app_logout') }}">Deconnexion</a>
+                {% else %}
+                    <a href="{{ path('home') }}">Accueil</a>
+                    <a href="{{ path('app_login') }}">Connexion</a>
                 {% endif %}
             </nav>
         {% endblock %}

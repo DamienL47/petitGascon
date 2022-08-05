@@ -9,10 +9,16 @@
     </div>
     <div class="dashboard">
         <nav class="navBarAdmin">
-            <a class="onglet" href="{{ path('home') }}">Accueil</a>
-            <a class="onglet" href="{{ path('admin_dashboard')}}"> Tableau de bord </a>
-            <a class="onglet" href="{{ path('create_admin')}}">Nouvel Admin</a>
-            <a class="onglet" href="{{ path('admin_list')}}">Liste des admins</a>
+            <a class="onglet" href="{{ path('home') }}">🚪  Accueil du site</a>
+            <a class="onglet" href="{{ path('admin_dashboard')}}">🏠  Tableau de bord </a>
+            <a class="onglet" href="{{ path('admin_app_menu_new')}}"> 📝  Créer un menu</a>
+            <a class="onglet" href="{{ path('admin_list')}}">📖  Liste des admins</a>
+            <a class="onglet" href="{{ path('admin_app_menu_index')}}">📖  Liste des menus</a>
+            <a class="onglet" href="{{ path('admin_app_met_index')}}">📖  Liste des plats</a>
+            <a class="onglet" href="{{ path('admin_app_category_index')}}">📖  Liste des catégories</a>
+            <a class="onglet" href="{{ path('admin_create_admin')}}">👔  Nouvel Admin</a>
+            <a class="onglet" href="{{ path('admin_app_met_new')}}">🍽  Ajouter un plat</a>
+            <a class="onglet" href="{{ path('admin_app_category_new')}}">+  Ajouter une catégorie</a>
         </nav>
     </div>
 {% endblock %}

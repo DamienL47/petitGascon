@@ -21,7 +21,7 @@ class AdminController extends AbstractController
 
     // CREATE
     /**
-     * @Route("admin/create_admin", name="create_admin")
+     * @Route("admin/create_admin", name="admin_create_admin")
      */
     public function createAdmin(AdminRepository $user, TranslatorInterface $translator, Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher)
     {

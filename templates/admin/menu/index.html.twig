@@ -1,0 +1,44 @@
+{% extends 'admin/home.html.twig' %}
+
+{% block title %}Menus{% endblock %}
+
+{% block main %}
+    <div class="content">
+
+        <h1>Liste des Menus</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Titre</th>
+                    <th>Prix</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for menu in menus %}
+                <tr>
+                    <td>{{ menu.id }}</td>
+                    <td>{{ menu.titre }}</td>
+                    <td>{{ menu.prix }}</td>
+                    <td>{{ menu.description }}</td>
+                    <td>{{ menu.image }}</td>
+                    <td>
+                        <a href="{{ path('admin_app_menu_show', {'id': menu.id}) }}">Voir</a>
+                        <a href="{{ path('admin_app_menu_edit', {'id': menu.id}) }}">Editer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">Aucun menu disponible</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('admin_app_menu_new') }}">Créer un nouveau menu</a>
+    </div>
+{% endblock %}

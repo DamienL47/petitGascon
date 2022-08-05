@@ -1,0 +1,15 @@
+{% extends 'admin/home.html.twig' %}
+
+{% block title %}Edition Menu{% endblock %}
+
+{% block main %}
+    <div class="content">
+        <h1>Modification du Menu</h1>
+
+        {{ include('admin/menu/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+        <a href="{{ path('admin_app_menu_index') }}">Retour à la liste</a>
+
+        {{ include('admin/menu/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Form\AdminType;
 use App\Repository\AdminRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;

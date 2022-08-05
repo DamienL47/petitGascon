@@ -1,0 +1,37 @@
+{% extends 'admin/home.html.twig' %}
+
+{% block title %}Plats{% endblock %}
+
+{% block main %}
+    <div class="content">
+
+        <h1>Les plats disponibles</h1>
+
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ met.id }}</td>
+                </tr>
+                <tr>
+                    <th>Titre</th>
+                    <td>{{ met.titre }}</td>
+                </tr>
+                <tr>
+                    <th>Prix</th>
+                    <td>{{ met.prix }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ met.description }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a href="{{ path('admin_app_met_index') }}">Retour à la liste</a>
+
+        <a href="{{ path('admin_app_met_edit', {'id': met.id}) }}">Editer</a>
+
+        {{ include('admin/met/_delete_form.html.twig') }}
+    </div>
+{% endblock %}
