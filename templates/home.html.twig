@@ -2,5 +2,83 @@
 
 {% block title %} Accueil {% endblock %}
 
-{% block main %} {% endblock %}
+{% block header %}
+
+    <nav class="navBar">
+        <a class="btn_menu accueil text_front" href="{{ path('home') }}"> Accueil </a>
+        <a class="btn_menu accueil text_front" href="{{ path('app_menu_index') }}"> Nos menus </a>
+        <a href="{{ path('app_login') }}"><img class="logoIconeMenu accueil" title="Connexion admin" src="{{ asset('assets/img/logo_petit gascon.png') }}" alt="Logo Restaurant"></a>
+        <a class="btn_menu accueil text_front" title="Bientôt disponible" href="{{ path('home') }}"> Réservation en ligne </a>
+        {# faire controller + ajout BDD et envoie mail #}
+        <a class="btn_menu accueil text_front" href="contact.html.twig"> Contact </a>
+    </nav>
+{% endblock %}
+{% block body %}
+
+    {% block main %}
+
+        <h2 class="text text_front size">Bar Restaurant</h2>
+        <h1 class="text surligne">Le Moulin du Petit Gascon</h1>
+        <section class="slider">
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class="active" aria-current="true" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class="active" aria-current="true" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" class="active" aria-current="true" aria-label="Slide 4"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" class="active" aria-current="true" aria-label="Slide 5"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" class="active" aria-current="true" aria-label="Slide 6"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{{ asset('assets/img/img_terrasse.png') }}" class="d-block w-100" alt="Terrasse du restaurant">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('assets/img/img_gambas.png') }}" class="d-block w-100" alt="Gambas géante">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('assets/img/img_rillette.png') }}" class="d-block w-100" alt="rillette maison">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('assets/img/img_tatin.png') }}" class="d-block w-100" alt="tatin coing foie gras">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('assets/img/img_cepes.png') }}" class="d-block w-100" alt="cèpes frais">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('assets/img/img_courge.png') }}" class="d-block w-100" alt="courges du jardin">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">prev</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">next</span>
+                </button>
+            </div>
+        </section>
+            <h2 class="text text_front size"> <span class="line">Nos Valeurs</span></h2>
+        <section>
+            <div class="container">
+                <div class="bloc_home">
+                    <h4 class="text text_front size"><span class="line_1">Produit Frais</span> </h4>
+                    <img class="content_article" src="{{ asset('assets/img/img_courge.png') }}" alt="Courge du jardin">
+                </div>
+                <div class="bloc_home">
+                    <h4 class="text text_front size"><span class="line_2">Fait Maison</span> </h4>
+                    <img class="content_article" src="{{ asset('assets/img/img_tatin.png') }}" alt="Tarte tatin salée">
+                </div>
+                <div class="bloc_home">
+                    <h4 class="text text_front size"><span class="line_3">Qualité/Prix</span> </h4>
+                    <img class="content_article" src="" alt="image potager">
+                </div>
+            </div>
+
+        </section>
+    {% endblock %}
+{% endblock %}
+
+
 

@@ -7,6 +7,7 @@
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
+            <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
             <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
         {% endblock %}
 
@@ -16,20 +17,14 @@
     </head>
     <header>
         {% block header %}
-            <nav class="navBar">
-                {% if app.session.started %}
-                    <a href="{{ path('admin_dashboard') }}">Tableau de bord</a>
-                    <a href="{{ path('app_logout') }}">Deconnexion</a>
-                {% else %}
-                    <a href="{{ path('home') }}">Accueil</a>
-                    <a href="{{ path('app_login') }}">Connexion</a>
-                {% endif %}
-            </nav>
+
         {% endblock %}
     </header>
     <body>
-        {% block main %}
+        {% block body%}
+            {% block main %}
 
+            {% endblock %}
         {% endblock %}
     </body>
     <footer>
