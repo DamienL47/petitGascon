@@ -142,7 +142,7 @@ body {
 
 .logoIconeMenu {
     width: 20vw;
-    height: 50vh;
+    height: 55vh;
 }
 
 .surligne {
@@ -151,9 +151,7 @@ body {
     background-color: black;
     border-radius: 15px;
     color: white;
-    margin: auto;
-    margin-top: 20px;
-    margin-bottom: 30px;
+    margin: 20px auto 30px auto;
     width: 40vw;
     padding: 10px 15px;
 }
@@ -164,7 +162,13 @@ body {
 }
 .carousel-inner {
     border-radius: 50px;
-    height: 40vh;
+    height: 45vh;
+}
+
+.carousel img {
+    position: absolute;
+    top: -100px;
+    object-fit: cover;
 }
 
 .navBar {
@@ -212,13 +216,13 @@ span.line::after {
     display: block;
 
     position: absolute;
-    bottom: -11.5%;
+    bottom: -16.3%;
     z-index: -1;
     transform: translateX(-50%);
 }
 
 span.line:hover::after {
-    animation: line 3s 0s;
+    animation: line 1s 0s;
     width: 12%;
 }
 
@@ -227,14 +231,18 @@ span.line:hover::after {
     width: 100vw;
     flex-flow: row wrap;
     justify-content: space-between;
+    margin-bottom: 100px;
 }
 
 .bloc_home {
     width: 32%;
-    height: 400px;
+    height: 450px;
     border: 1px solid silver;
     border-radius: 30px;
     margin-top: 30px;
+    background-color: whitesmoke;
+    z-index: 0;
+    box-shadow: 2px 0 20px black;
 }
 
 span.line_1::after {
@@ -246,13 +254,13 @@ span.line_1::after {
     display: block;
 
     position: absolute;
-    bottom: -26%;
+    bottom: -30.8%;
     z-index: -1;
     transform: translateX(-50%);
 }
 
 span.line_1:hover::after {
-    animation: line 3s 0s;
+    animation: line 1s 0s;
     width: 12%;
 }
 
@@ -265,13 +273,13 @@ span.line_2::after {
     display: block;
 
     position: absolute;
-    bottom: -26%;
+    bottom: -30.8%;
     z-index: -1;
     transform: translateX(-50%);
 }
 
 span.line_2:hover::after {
-    animation: line 3s 0s;
+    animation: line 1s 0s;
     width: 12%;
 }
 
@@ -284,13 +292,13 @@ span.line_3::after {
     display: block;
 
     position: absolute;
-    bottom: -26%;
+    bottom: -30.8%;
     z-index: -1;
     transform: translateX(-50%);
 }
 
 span.line_3:hover::after {
-    animation: line 3s 0s;
+    animation: line 1s 0s;
     width: 12%;
 }
 
@@ -299,4 +307,61 @@ span.line_3:hover::after {
     height: 150px;
     margin-top: 30px;
     object-fit: cover;
+    box-shadow: 2px 0 20px black;
+}
+
+.text_box {
+    font-family: Tangerine-regular, arial, sans-serif;
+    font-size: 25px;
+    text-align: justify;
+    padding: 3%;
+}
+
+strong {
+    color: limegreen;
+    font-size: 28px;
+    padding-left: 50px;
+}
+
+/* zone footer */
+
+.content_footer {
+    width: 100vw;
+    height: 60vh;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    background-color: black;
+}
+
+.box_footer {
+    margin: 30px 20px;
+}
+
+.text_footer {
+    font-family: Tangerine-bold, "Arial Black", sans-serif;
+    font-size: xx-large;
+    color: white;
+    text-decoration: none;
+}
+h4::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 8%;
+    height: 3px;
+    background-color: limegreen;
+    transform: scale(0);
+    transition: transform 0.3s ease-in-out;
+
+}
+h4:hover::after {
+    transform: scale(1);
+}
+
+.text_footer2 {
+    font-family: Tangerine-bold, "Arial Black", sans-serif;
+    font-size: x-large;
+    color: white;
 }

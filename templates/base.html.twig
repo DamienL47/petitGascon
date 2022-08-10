@@ -13,11 +13,20 @@
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+            <!-- JavaScript Bundle with Popper -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
         {% endblock %}
     </head>
     <header>
         {% block header %}
-
+            <nav class="navBar">
+                <a class="btn_menu accueil text_front" href="{{ path('home') }}"> Accueil </a>
+                <a class="btn_menu accueil text_front" href="{{ path('app_menu_index') }}"> Nos menus </a>
+                <a href="{{ path('app_login') }}"><img class="logoIconeMenu accueil" title="Connexion admin" src="{{ asset('assets/img/logo_petit gascon.png') }}" alt="Logo Restaurant"></a>
+                <a class="btn_menu accueil text_front" title="Bientôt disponible" href="{{ path('home') }}"> Réservation en ligne </a>
+                {# faire controller + ajout BDD et envoie mail #}
+                <a class="btn_menu accueil text_front" href="contact.html.twig"> Contact </a>
+            </nav>
         {% endblock %}
     </header>
     <body>
@@ -28,6 +37,38 @@
         {% endblock %}
     </body>
     <footer>
-        {% block footer %} {% endblock %}
+        {% block footer %}
+            <section class="content_footer">
+                <div class="box_footer">
+                    <h4 class="text_footer">Nous trouver :</h4>
+                    <p class="text_footer2">Chemin de l'argente <br> 32100 CONDOM</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2872.5340498035416!2d0.3636888151626218!3d43.94831597911227!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b2ed8040b9ca05%3A0x30367826376c71de!2sMoulin%20du%20Petit%20Gascon!5e0!3m2!1sfr!2sfr!4v1660041198717!5m2!1sfr!2sfr" width="200" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="box_footer">
+                    <h4 class="text_footer">Nos Horaires :</h4>
+                    <p class="text_footer"> Du Mercredi au Lundi </p>
+                    <p class="text_footer"> De 12h à 14h30 et de 20h à 22h30 </p>
+                    <p class="text_footer"> Fermé le Mardi </p>
+                </div>
+                <div class="box_footer">
+                    <h4 class="text_footer">Nous contacter :</h4>
+                    <p class="text_footer"> Infos et réservations </p>
+                    <p class="text_footer">Par Téléphone au :<a class="text_footer" href="tel:+33581681853"> 05.81.68.18.53</a></p>
+                    <p class="text_footer"> ou par mail à : <a class="text_footer" href="mailto:lemoulindupetitgascon@gmail.com">lemoulindupetitgascon@gmail.com</a> </p>
+                </div>
+                <div class="box_footer">
+                    <p class="text_footer2">
+                        Mentions Légales
+                    </p>
+                    <p class="text_footer2">
+                        Politique RGPD
+                    </p>
+                    <p class="text_footer2">
+                        Design et création : Lataste Damien ©
+                    </p>
+                </div>
+            </section>
+
+        {% endblock %}
     </footer>
 </html>
