@@ -15,7 +15,7 @@
 <header>
     {% block header %}
     <nav class="navBar">
-        {% if app.session.started %}
+        {% if app.session.started  %}
             <a href="{{ path('admin_dashboard') }}">Tableau de bord</a>
             <a href="{{ path('app_logout') }}">Deconnexion</a>
         {% else %}

@@ -4,8 +4,10 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Entity\Menu;
+use App\Entity\Met;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,11 +16,21 @@ class MenuType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('is_published', CheckboxType::class, [
+                'compound' => false,
+                'label'    => 'Publier',
+                'required' => false,
+            ])
             ->add('titre')
             ->add('prix')
             ->add('description')
             ->add('image')
-            ->add('id_met');
+//            ->add('id_met', EntityType::class, [
+//                'class' => Met::class,
+//                'choice_label' => 'titre',
+//                'mapped' => false,
+            ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

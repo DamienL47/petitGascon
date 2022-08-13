@@ -3,13 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Met;
-use App\Form\CategoryType;
-use App\Form\MenuType;
 use App\Form\MetType;
-use App\Repository\CategoryRepository;
 use App\Repository\MenuRepository;
 use App\Repository\MetRepository;
-use phpDocumentor\Reflection\Types\String_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,10 +19,11 @@ class AdminMetController extends AbstractController
     /**
      * @Route("admin/mets", name="admin_app_met_index", methods={"GET"})
      */
-    public function index(MetRepository $metRepository): Response
+    public function index(MetRepository $metRepository, MenuRepository $menuRepository): Response
     {
         return $this->render('admin/met/index.html.twig', [
             'mets' => $metRepository->findAll(),
+
         ]);
     }
 

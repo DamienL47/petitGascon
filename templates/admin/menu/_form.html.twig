@@ -1,5 +1,4 @@
 {{ form_start(form, {'attr': {'class': 'champsForm'}}) }}
-   {# {{ form_widget(form) }} #}
 
     {{ form_label(form.titre) }}
     {{ form_widget(form.titre) }}
@@ -9,9 +8,6 @@
     {{ form_widget(form.prix) }}
     {{ form_errors(form.prix) }}
 
-    {{ form_widget(form.id_met) }}
-    {{ form_errors(form.id_met) }}
-
     {{ form_label(form.description) }}
     {{ form_widget(form.description) }}
     {{ form_errors(form.description) }}
@@ -20,6 +16,10 @@
     {{ form_widget(form.image) }}
     {{ form_errors(form.image) }}
 
+    {{ form_label(form.is_published) }}
+    {{ form_widget(form.is_published, {'attr': {'class': 'checkbox'}}) }}
+    {{ form_errors(form.is_published) }}
 
-    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+
+    <button class="connect">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}

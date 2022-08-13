@@ -1,0 +1,18 @@
+{% extends 'base.html.twig'%}
+
+{% block body %}
+    {% block main %}
+        <div class="menu">
+        {% for menu in menus %}
+                {% if menu.prix %}
+                    <h1>Menu à {{ menu.prix }}</h1>
+                    {% for met in menu %}
+                        {{ met.titre }}
+                    {% endfor %}
+                    {% else %}
+                    <h1> Carte </h1>
+                {% endif %}
+        {% endfor %}
+        </div>
+    {% endblock %}
+{% endblock %}

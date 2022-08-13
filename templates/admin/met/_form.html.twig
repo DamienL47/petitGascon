@@ -16,5 +16,9 @@
     {{ form_widget(form.description) }}
     {{ form_errors(form.description) }}
 
+    {{ form_label(form.menus) }}
+    {{ form_widget(form.menus) }}
+    {{ form_errors(form.menus) }}
+
     <button class="btn connect">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}

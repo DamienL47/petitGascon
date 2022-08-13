@@ -44,6 +44,11 @@ class Menu
      */
     private $id_met;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isPublished;
+
 
     public function __construct()
     {
@@ -129,7 +134,19 @@ class Menu
 
     public function __toString()
     {
-        return $this->getTitre();
+        return $this->getTitre($this->id);
+    }
+
+    public function isIsPublished(): ?bool
+    {
+        return $this->isPublished;
+    }
+
+    public function setIsPublished(bool $isPublished): self
+    {
+        $this->isPublished = $isPublished;
+
+        return $this;
     }
 
 }

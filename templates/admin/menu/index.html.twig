@@ -9,26 +9,32 @@
 
         <table class="table">
             <thead>
-                <tr>
+                <tr class="tableau">
                     <th>Id</th>
                     <th>Titre</th>
                     <th>Prix</th>
                     <th>Description</th>
+                    <th>Publié</th>
                     <th>Image</th>
                     <th>actions</th>
                 </tr>
             </thead>
             <tbody>
             {% for menu in menus %}
-                <tr>
+                <tr class="tableau">
                     <td>{{ menu.id }}</td>
                     <td>{{ menu.titre }}</td>
                     <td>{{ menu.prix }}</td>
                     <td>{{ menu.description }}</td>
+                    {% if menu.isPublished %}
+                        <td> Publié </td>
+                    {% else %}
+                        <td> Non Publié </td>
+                    {% endif %}
                     <td>{{ menu.image }}</td>
                     <td>
-                        <a href="{{ path('admin_app_menu_show', {'id': menu.id}) }}">Voir</a>
-                        <a href="{{ path('admin_app_menu_edit', {'id': menu.id}) }}">Editer</a>
+                        <a class="connect" href="{{ path('admin_app_menu_show', {'id': menu.id}) }}">Voir</a>
+                        <a class="connect" href="{{ path('admin_app_menu_edit', {'id': menu.id}) }}">Editer</a>
                     </td>
                 </tr>
             {% else %}
@@ -39,6 +45,6 @@
             </tbody>
         </table>
 
-        <a href="{{ path('admin_app_menu_new') }}">Créer un nouveau menu</a>
+        <a class="connect" href="{{ path('admin_app_menu_new') }}">Créer un nouveau menu</a>
     </div>
 {% endblock %}

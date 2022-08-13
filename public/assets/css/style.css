@@ -26,12 +26,14 @@ body {
     background: linear-gradient(135deg, white, silver);
 }
 
+
 /*Zone connexion Admin */
 
 .text {
     text-align: center;
     margin-top: 20px;
 }
+
 .logoIcone {
     width: 130px;
     height: 170px;
@@ -138,8 +140,48 @@ body {
     margin: 2%;
 }
 
+.tableau {
+    width: 100%;
+    margin-top: 5px;
+    border: 1px solid black;
+}
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
 /* zone front */
 
+.navBar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 10%;
+    padding-bottom: 5%;
+    height: 200px;
+}
+
+.btn_menu {
+    border: 1px solid limegreen;
+    background-color: limegreen;
+    color: white;
+    text-decoration: none;
+    padding: 20px;
+    border-radius: 50px;
+    box-shadow: 5px 5px 10px black;
+    margin-right: 5vw;
+    margin-left: 5vw;
+}
+
+.btn_menu:hover {
+    border: 1px solid silver;
+    background-color: green;
+    color: white;
+    font-size: 30px;
+}
 .logoIconeMenu {
     width: 20vw;
     height: 55vh;
@@ -171,34 +213,6 @@ body {
     object-fit: cover;
 }
 
-.navBar {
-    display: block;
-    text-align: center;
-    height: 300px;
-}
-
-
-.btn_menu {
-    border: 1px solid limegreen;
-    background-color: limegreen;
-    color: white;
-    text-decoration: none;
-    padding: 20px;
-    border-radius: 50px;
-    text-align: center;
-    align-items: center;
-    box-shadow: 5px 5px 10px black;
-    margin-right: 5vw;
-    margin-left: 5vw;
-}
-
-.btn_menu:hover {
-    border: 1px solid silver;
-    background-color: green;
-    color: white;
-    font-size: 30px;
-}
-
 .text_front {
     font-family: Tangerine-regular, Arial, sans-serif;
     font-size: 25px;
@@ -216,7 +230,7 @@ span.line::after {
     display: block;
 
     position: absolute;
-    bottom: -16.3%;
+    bottom: -7%;
     z-index: -1;
     transform: translateX(-50%);
 }
@@ -254,7 +268,7 @@ span.line_1::after {
     display: block;
 
     position: absolute;
-    bottom: -30.8%;
+    bottom: -20.3%;
     z-index: -1;
     transform: translateX(-50%);
 }
@@ -273,7 +287,7 @@ span.line_2::after {
     display: block;
 
     position: absolute;
-    bottom: -30.8%;
+    bottom: -20.3%;
     z-index: -1;
     transform: translateX(-50%);
 }
@@ -292,7 +306,7 @@ span.line_3::after {
     display: block;
 
     position: absolute;
-    bottom: -30.8%;
+    bottom: -20.3%;
     z-index: -1;
     transform: translateX(-50%);
 }

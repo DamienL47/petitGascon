@@ -9,7 +9,7 @@
 
         <table class="table">
             <thead>
-                <tr>
+                <tr class="tableau">
                     <th>Id</th>
                     <th>Titre</th>
                     <th>Prix</th>
@@ -19,14 +19,14 @@
             </thead>
             <tbody>
             {% for met in mets %}
-                <tr>
+                <tr class="tableau">
                     <td>{{ met.id }}</td>
                     <td>{{ met.titre }}</td>
                     <td>{{ met.prix }}</td>
                     <td>{{ met.description }}</td>
                     <td>
-                        <a href="{{ path('admin_app_met_show', {'id': met.id}) }}">Voir</a>
-                        <a href="{{ path('admin_app_met_edit', {'id': met.id}) }}">Editer</a>
+                        <a class="connect" href="{{ path('admin_app_met_show', {'id': met.id}) }}">Voir</a>
+                        <a class="connect" href="{{ path('admin_app_met_edit', {'id': met.id}) }}">Editer</a>
                     </td>
                 </tr>
             {% else %}
@@ -37,6 +37,6 @@
             </tbody>
         </table>
 
-        <a href="{{ path('admin_app_met_new') }}">Créer un plat</a>
+        <a class="connect" href="{{ path('admin_app_met_new') }}">Créer un plat</a>
     </div>
 {% endblock %}

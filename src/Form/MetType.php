@@ -18,11 +18,17 @@ class MetType extends AbstractType
             ->add('titre')
             ->add('prix')
             ->add('description')
-            ->add('menus')
+            ->add('menus', EntityType::class, [
+                'class' => Menu::class,
+                'label' => 'Menu',
+                'choice_label' => 'titre',
+                'mapped'=> false,
+            ])
             ->add('category_id', EntityType::class,[
                 'class' => Category::class,
                 'label' => 'Categorie',
-                'choice_label' => 'titre'
+                'choice_label' => 'titre',
+                //'mapped' => false,
             ])
         ;
     }
