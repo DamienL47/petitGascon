@@ -25,10 +25,7 @@ class MenuType extends AbstractType
             ->add('prix')
             ->add('description')
             ->add('image')
-//            ->add('id_met', EntityType::class, [
-//                'class' => Met::class,
-//                'choice_label' => 'titre',
-//                'mapped' => false,
+
             ;
 
     }

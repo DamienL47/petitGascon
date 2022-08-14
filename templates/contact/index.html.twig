@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Petit Gascon - Contact {% endblock %}
+
+{% block main %}
+    {% for message in app.flashes('success') %}
+        {{ message }}
+    {% endfor %}
+
+    <div class="contactPage">
+        <div class="maps">
+            <h2>Nous trouver :</h2>
+            <p>Chemin de l'argente <br> 32100 CONDOM</p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2872.5340498035416!2d0.3636888151626218!3d43.94831597911227!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b2ed8040b9ca05%3A0x30367826376c71de!2sMoulin%20du%20Petit%20Gascon!5e0!3m2!1sfr!2sfr!4v1660041198717!5m2!1sfr!2sfr" width="400" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <div class="blocContact">
+            <h2>Contactez-nous :</h2>
+            <h3><a class="tel" href="tel:+33581681853"> 05.81.68.18.53</a></h3>
+            <p>Ou remplissez le formulaire ci-contre</p>
+        </div>
+
+        <div class="blocFormContact">
+            <h3 class="text">Formulaire de contact </h3>
+            {{ form_start(form, {'attr': {'class': 'champsForm'}}) }}
+
+            {{ form_label(form.nom) }}
+            {{ form_widget(form.nom, {'label' : "Nom", 'attr': {'class': 'champsFormContact'}}) }}
+            {{ form_errors(form.nom) }}
+
+            {{ form_label(form.prenom) }}
+            {{ form_widget(form.prenom, {'label' : "Prenom", 'attr': {'class': 'champsFormContact'}}) }}
+            {{ form_errors(form.prenom) }}
+
+            {{ form_label(form.tel) }}
+            {{ form_widget(form.tel, {'label' : "Tel", 'attr': {'class': 'champsFormContact'}}) }}
+            {{ form_errors(form.tel) }}
+
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email, {'label' : "Email", 'attr': {'class': 'champsFormContact'}}) }}
+            {{ form_errors(form.email) }}
+
+            {{ form_label(form.sujet) }}
+            {{ form_widget(form.sujet, {'label' : "sujet", 'attr': {'class': 'champsFormContact'}}) }}
+            {{ form_errors(form.sujet) }}
+
+            {{ form_label(form.message) }}
+            {{ form_widget(form.message, {'label' : "Message", 'attr': {'class': 'champsFormContact'}}) }}
+            {{ form_errors(form.message) }}
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+    <section class="content_footer">
+        <div class="box_footer">
+            <h4 class="text_footer">Nos Horaires :</h4>
+            <p class="text_footer"> Du Mercredi au Lundi </p>
+            <p class="text_footer"> De 12h à 14h30 et de 20h à 22h30 </p>
+            <p class="text_footer"> Fermé le Mardi </p>
+        </div>
+        <div class="box_footer">
+            <h4 class="text_footer">Nous contacter :</h4>
+            <p class="text_footer"> Infos et réservations </p>
+            <p class="text_footer">Par Téléphone au :<a class="text_footer" href="tel:+33581681853"> 05.81.68.18.53</a></p>
+            <p class="text_footer"> ou par mail à : <a class="text_footer" href="mailto:lemoulindupetitgascon@gmail.com">lemoulindupetitgascon@gmail.com</a> </p>
+        </div>
+        <div class="box_footer">
+            <p class="text_footer2">
+                Mentions Légales
+            </p>
+            <p class="text_footer2">
+                Politique RGPD
+            </p>
+            <p class="text_footer2">
+                Design et création : Lataste Damien ©
+            </p>
+        </div>
+    </section>
+
+{% endblock %}

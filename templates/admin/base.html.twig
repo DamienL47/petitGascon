@@ -28,7 +28,7 @@
 <body>
 <main class="workZone">
     {% block main %}
-        <div class="flash">
+        <div class="content">
             {% for message in app.flashes('success') %}
                 <h2>{{ message }}</h2>
             {% endfor %}

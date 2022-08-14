@@ -8,7 +8,9 @@ use App\Form\MenuType;
 use App\Repository\CategoryRepository;
 use App\Repository\MenuRepository;
 use App\Repository\MetRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use phpDocumentor\Reflection\Types\String_;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,7 +28,7 @@ class MenuController extends AbstractController
     {
         $menu = $menuRepository->findAll();
         $categories = $categoryRepository->findAll();
-        $met = $metRepository->findAll();
+        $met = $menuRepository->getClassName(Menu::class, $menu);
 
         return $this->render('menu_front/index.html.twig', [
             'menus' => $menu,
@@ -38,10 +40,11 @@ class MenuController extends AbstractController
     /**
      * @Route("/menu/{id}", name="app_menu_show", methods={"GET"})
      */
-    public function show(Menu $menu): Response
+    public function show(Menu $menu, Met $met): Response
     {
         return $this->render('menu_front/show.html.twig', [
             'menu' => $menu,
+            'met' => $met
         ]);
     }
 }

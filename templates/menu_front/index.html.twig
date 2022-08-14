@@ -4,14 +4,16 @@
     {% block main %}
         <div class="menu">
         {% for menu in menus %}
+            {% if menu.isPublished %}
                 {% if menu.prix %}
                     <h1>Menu à {{ menu.prix }}</h1>
-                    {% for met in menu %}
-                        {{ met.titre }}
+                    {% for menu in met %}
+                        <p>{{ menu }}</p>
                     {% endfor %}
                     {% else %}
                     <h1> Carte </h1>
                 {% endif %}
+            {% endif %}
         {% endfor %}
         </div>
     {% endblock %}

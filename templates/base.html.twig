@@ -24,8 +24,7 @@
                 <a class="btn_menu accueil text_front" href="{{ path('app_menu_index') }}"> Nos menus </a>
                 <a href="{{ path('admin_dashboard') }}"><img class="logoIconeMenu accueil" title="Connexion admin" src="{{ asset('assets/img/logo_petit gascon.png') }}" alt="Logo Restaurant"></a>
                 <a class="btn_menu accueil text_front" title="Bientôt disponible" href="{{ path('home') }}"> Réservation en ligne </a>
-                {# faire controller + ajout BDD et envoie mail #}
-                <a class="btn_menu accueil text_front" href="contact.html.twig"> Contact </a>
+                <a class="btn_menu accueil text_front" href="{{ path('app_contact')}}"> Contact </a>
             </nav>
         {% endblock %}
     </header>
