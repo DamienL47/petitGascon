@@ -59,7 +59,7 @@ body {
     width: max-content;
     text-decoration: none;
     font-size: 16px;
-    margin: auto;
+    margin: auto auto 20px 20px;
     font-weight: bold;
     padding: 3%;
     border-radius: 20px;
@@ -110,8 +110,9 @@ body {
 
 .content {
     display: flex;
-    flex-flow: wrap row;
-    max-width: 500px;
+    flex-flow: row wrap;
+    flex-direction: column;
+    max-width: max-content;
     position: relative;
     left: 21%;
 }
@@ -146,11 +147,19 @@ body {
     border: 1px solid black;
 }
 
+.listContact {
+    width: max-content;
+}
+
 .checkbox {
     width: 20px;
     height: 20px;
     margin: auto;
     margin-bottom: 10px;
+}
+
+.mini {
+    width: 10%;
 }
 
 /* zone front */
@@ -187,6 +196,19 @@ body {
     height: 55vh;
 }
 
+.logoFaitMaison {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 346px;
+    right: 31%;
+    border: 1px solid limegreen;
+    border-radius: 10px 10px 0 0;
+    padding: 10px;
+    background-color: limegreen;
+}
+
+
 .surligne {
     font-family: Tangerine-regular, Arial, sans-serif;
     font-size: 50px;
@@ -197,6 +219,7 @@ body {
     width: 40vw;
     padding: 10px 15px;
 }
+
 
 .slider {
     width: 80%;
@@ -268,7 +291,7 @@ span.line_1::after {
     display: block;
 
     position: absolute;
-    bottom: -20.3%;
+    bottom: -20.5%;
     z-index: -1;
     transform: translateX(-50%);
 }
@@ -287,7 +310,7 @@ span.line_2::after {
     display: block;
 
     position: absolute;
-    bottom: -20.3%;
+    bottom: -20.5%;
     z-index: -1;
     transform: translateX(-50%);
 }
@@ -306,7 +329,7 @@ span.line_3::after {
     display: block;
 
     position: absolute;
-    bottom: -20.3%;
+    bottom: -20.5%;
     z-index: -1;
     transform: translateX(-50%);
 }
@@ -336,6 +359,7 @@ strong {
     font-size: 28px;
     padding-left: 50px;
 }
+
 
 /* zone footer */
 
@@ -416,5 +440,28 @@ h4:hover::after {
     border-radius: 20px;
     padding: 5px;
     background-color: silver;
+}
+
+/* Zone Menus */
+
+.container_menu {
+    display: flex;
+    width: 100%;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.menu {
+    width: 45%;
+    border: 1px solid black;
+    text-align: center;
+    font-family: Tangerine-bold, Arial, sans-serif;
+    background-color: white;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.menu > h3 {
+    color: limegreen;
 }
 

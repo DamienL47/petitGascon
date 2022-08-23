@@ -52,6 +52,11 @@ class Contact
      */
     private ?\DateTimeImmutable $createdAt;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $lu;
+
     public function __construct()
 {
         $this->createdAt = new \DateTimeImmutable();
@@ -142,6 +147,18 @@ class Contact
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function isLu(): ?bool
+    {
+        return $this->lu;
+    }
+
+    public function setLu(bool $lu): self
+    {
+        $this->lu = $lu;
 
         return $this;
     }

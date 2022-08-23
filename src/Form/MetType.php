@@ -18,7 +18,7 @@ class MetType extends AbstractType
             ->add('titre')
             ->add('prix')
             ->add('description')
-            ->add('menus', EntityType::class, [
+            ->add('menu_id', EntityType::class, [
                 'class' => Menu::class,
                 'label' => 'Menu',
                 'choice_label' => 'titre',
@@ -28,7 +28,7 @@ class MetType extends AbstractType
                 'class' => Category::class,
                 'label' => 'Categorie',
                 'choice_label' => 'titre',
-                //'mapped' => false,
+                'mapped' => false,
             ])
         ;
     }

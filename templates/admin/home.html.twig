@@ -26,6 +26,45 @@
 {% block main %}
     <section class="content">
         <h2>Tableau de bord️</h2>
+        <h3>Vos demandes à traiter</h3>
+
+        <div class="listContact">
+            <table class="table">
+                <thead>
+                <tr class="tableau">
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Tel</th>
+                    <th>Email</th>
+                    <th>Sujet</th>
+                    <th>Message</th>
+                    <th>Date du message</th>
+                    <th>Lu</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for contact in contact %}
+                    {% if not contact.lu %}
+                        <tr class="tableau">
+                            <td>{{ contact.id }}</td>
+                            <td>{{ contact.nom }}</td>
+                            <td>{{ contact.prenom }}</td>
+                            <td>{{ contact.tel }}</td>
+                            <td>{{ contact.email }}</td>
+                            <td>{{ contact.sujet }}</td>
+                            <td>{{ contact.message }}</td>
+                            <td>{{ contact.createdAt ? contact.createdAt|date('Y-m-d') : '' }}</td>
+                            <td>
+                                <label for="lu"></label>
+                                <input type="checkbox" id="lu" name="lu">
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </section>
 {% endblock %}
 

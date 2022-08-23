@@ -8,10 +8,12 @@ use App\Form\MenuType;
 use App\Repository\CategoryRepository;
 use App\Repository\MenuRepository;
 use App\Repository\MetRepository;
+use Knp\Bundle\SnappyBundle\KnpSnappyBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * @Route("admin/")
@@ -24,7 +26,6 @@ class AdminMenuController extends AbstractController
     public function index(MenuRepository $menuRepository, MetRepository $metRepository, CategoryRepository $categoryRepository): Response
     {
         $menu = $menuRepository->findAll();
-//        dd($menu);
         return $this->render('admin/menu/index.html.twig', [
             'menus' => $menu,
             'met' => $metRepository->findAll(),
@@ -35,13 +36,32 @@ class AdminMenuController extends AbstractController
     /**
      * @Route("admin/new", name="admin_app_menu_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, MenuRepository $menuRepository, MetRepository $metRepository): Response
+    public function new(SluggerInterface $slugger, Request $request, MenuRepository $menuRepository, MetRepository $metRepository): Response
     {
         $menu = new Menu();
         $form = $this->createForm(MenuType::class, $menu);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Je vérifie que le formulaire contient une image et je n'applique la
+            //récupération et la modification que s'il contient un fichier image
+            if (!$form->has('image')){
+                // Je récupère le fichier image depuis le formulaire
+                $image = $form->get('image')->getData();
+                // Je récupère le nom original du fichier
+                $originalFileName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                // J'utilise une instance de la classe slugger et sa méthode slug
+                // pour supprimer les caractères spéciaux et espace du nom de fichier
+                $safeFileName = $slugger->slug($originalFileName);
+                //Je rajoute au nom de fichier, un identifiant unique (en cas de doublon)
+                $fileName = $safeFileName.'-'.uniqid().'.'.$image->guessExtension();
+                //Je déplace l'image dans le dossier public une fois renommée avec le nom créé
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fileName
+                );
+                $menu->setImage($fileName);
+            }
             $menuRepository->add($menu, true);
 
             return $this->redirectToRoute('admin_app_menu_index', [], Response::HTTP_SEE_OTHER);
@@ -50,7 +70,7 @@ class AdminMenuController extends AbstractController
         return $this->renderForm('admin/menu/new.html.twig', [
             'menu' => $menu,
             'met' => $metRepository->findAll(),
-            'form' => $form,
+            'form' => $form
         ]);
     }
 
@@ -68,14 +88,35 @@ class AdminMenuController extends AbstractController
     /**
      * @Route("admin/menu/{id}/edit", name="admin_app_menu_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Menu $menu, MenuRepository $menuRepository, Met $met, MetRepository $metRepository): Response
+    public function edit(SluggerInterface $slugger, Request $request, Menu $menu, MenuRepository $menuRepository, Met $met, MetRepository $metRepository): Response
     {
+
         $form = $this->createForm(MenuType::class, $menu);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Je vérifie que le formulaire contient une image et je n'applique la
+            //récupération et la modification que s'il contient un fichier image
+            if (!$form->has('image')){
+                // Je récupère le fichier image depuis le formulaire
+                $image = $form->get('image')->getData();
+                // Je récupère le nom original du fichier
+                $originalFileName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                // J'utilise une instance de la classe slugger et sa méthode slug
+                // pour supprimer les caractères spéciaux et espace du nom de fichier
+                $safeFileName = $slugger->slug($originalFileName);
+                //Je rajoute au nom de fichier, un identifiant unique (en cas de doublon)
+                $fileName = $safeFileName.'-'.uniqid().'.'.$image->guessExtension();
+                //Je déplace l'image dans le dossier public une fois renommée avec le nom créé
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fileName
+                );
+                $menu->setImage($fileName);
+            }
+            $met = $metRepository->find($form->get('id_met')->getViewData());
+            $menu->addIdMet($met);
             $menuRepository->add($menu, true);
-
 
             return $this->redirectToRoute('admin_app_menu_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -98,5 +139,17 @@ class AdminMenuController extends AbstractController
         }
 
         return $this->redirectToRoute('admin_app_menu_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @Route("admin/menu/pdf", name="admin_menu_pdf")
+     */
+    public function toPdf(MenuRepository $menuRepository, MetRepository $metRepository, CategoryRepository $categoryRepository)
+    {
+        return $this->render('admin/pdf/pdf.html.twig', [
+            'menu' => $menuRepository->findAll(),
+            'met' => $metRepository->findAll(),
+            'category' => $categoryRepository->findAll()
+        ]);
     }
 }

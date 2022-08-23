@@ -14,6 +14,7 @@
                     <th>Titre</th>
                     <th>Prix</th>
                     <th>Description</th>
+                    <th>Menu</th>
                     <th>actions</th>
                 </tr>
             </thead>
@@ -24,6 +25,11 @@
                     <td>{{ met.titre }}</td>
                     <td>{{ met.prix }}</td>
                     <td>{{ met.description }}</td>
+                    <td>
+                        {% for menu in met.menus %}
+                            <p>{{ menu.titre }}</p>
+                        {% endfor %}
+                    </td>
                     <td>
                         <a class="connect" href="{{ path('admin_app_met_show', {'id': met.id}) }}">Voir</a>
                         <a class="connect" href="{{ path('admin_app_met_edit', {'id': met.id}) }}">Editer</a>

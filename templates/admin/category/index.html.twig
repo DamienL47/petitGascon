@@ -21,8 +21,8 @@
                     <td>{{ category.id }}</td>
                     <td>{{ category.titre }}</td>
                     <td>
-                        <a class="connect" href="{{ path('admin_app_category_show', {'id': category.id}) }}">Voir</a>
-                        <a class="connect" href="{{ path('admin_app_category_edit', {'id': category.id}) }}">Editer</a>
+                        <a class="btn connect" href="{{ path('admin_app_category_show', {'id': category.id}) }}">Voir</a>
+                        <a class="btn connect" href="{{ path('admin_app_category_edit', {'id': category.id}) }}">Editer</a>
                     </td>
                 </tr>
             {% else %}
@@ -33,6 +33,6 @@
             </tbody>
         </table>
 
-        <a class="connect" href="{{ path('admin_app_category_new') }}">Créer une nouvelle catégorie</a>
+        <a class="btn connect" href="{{ path('admin_app_category_new') }}">Créer une nouvelle catégorie</a>
     </div>
 {% endblock %}

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ asset('assets/css/stylePdf.css') }}">
+    <title>Menu PDF</title>
+</head>
+<header>
+    {% block header %}
+        <h1>{{ menu.titre }} . {{ menu.prix }}</h1>
+    {% endblock %}
+</header>
+<body>
+    {% block body %}
+        {% if menu.image %}
+            {{ menu.image }}
+        {% endif %}
+        <main>
+            {% block main %}
+                <div>
+                    <h2>Entrées</h2>
+                    {% for met in category %}
+                        {{ met.mets }}
+                    {% endfor %}
+                </div>
+                <div>
+                    <h2>Plats</h2>
+                </div>
+                <div>
+                    <h2>Desserts</h2>
+                </div>
+            {% endblock%}
+        </main>
+    {% endblock %}
+</body>
+<footer>
+    {% block footer %}
+    {% endblock %}
+</footer>
+</html>

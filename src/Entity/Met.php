@@ -39,7 +39,7 @@ class Met
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $description;
+    private ?string $description;
 
     /**
      * @ORM\ManyToMany(targetEntity=Menu::class, mappedBy="id_met")
@@ -133,7 +133,7 @@ class Met
 
     public function __toString()
     {
-        return $this->getTitre();
+        return $this->getMenus();
     }
 
 }

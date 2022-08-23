@@ -134,7 +134,7 @@ class Menu
 
     public function __toString()
     {
-        return $this->getTitre($this->id);
+        return $this->getIdMet();
     }
 
     public function isIsPublished(): ?bool

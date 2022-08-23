@@ -2,13 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Contact;
 use App\Form\ContactType;
-use App\Repository\ContactRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mailer\MailerInterface;
@@ -17,12 +16,12 @@ class ContactController extends AbstractController
 {
     /**
      * @Route("/contact", name="app_contact")
+     * @throws TransportExceptionInterface
      */
-    public function index(MailerInterface $mailer, Request $request, ContactRepository $contactRepository, EntityManagerInterface $entityManager): Response
+    public function index(MailerInterface $mailer, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $contact = new Contact();
-        $form = $this->createForm(ContactType::class, $contact);
-
+        //$contact = new Contact();
+        $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
@@ -33,7 +32,7 @@ class ContactController extends AbstractController
             // Email
             $email = (new Email())
                 ->from($contact->getEmail())
-                ->to('admin@petitgascon.com')
+                ->to('damien.lataste@lapiscine.pro')
                 ->subject($contact->getSujet())
                 ->html($contact->getMessage());
 

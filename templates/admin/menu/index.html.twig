@@ -7,6 +7,8 @@
 
         <h1>Liste des Menus</h1>
 
+        <a class="connect" href="{{ path('admin_app_menu_new') }}">Créer un nouveau menu</a>
+
         <table class="table">
             <thead>
                 <tr class="tableau">
@@ -31,7 +33,11 @@
                     {% else %}
                         <td> Non Publié </td>
                     {% endif %}
-                    <td>{{ menu.image }}</td>
+                        <td>
+                        {% if menu.image %}
+                            <img class="mini" src="{{ asset('uploads/images/') ~ menu.image }}" alt="Image du menu">
+                        {% endif %}
+                        </td>
                     <td>
                         <a class="connect" href="{{ path('admin_app_menu_show', {'id': menu.id}) }}">Voir</a>
                         <a class="connect" href="{{ path('admin_app_menu_edit', {'id': menu.id}) }}">Editer</a>
@@ -44,7 +50,5 @@
             {% endfor %}
             </tbody>
         </table>
-
-        <a class="connect" href="{{ path('admin_app_menu_new') }}">Créer un nouveau menu</a>
     </div>
 {% endblock %}

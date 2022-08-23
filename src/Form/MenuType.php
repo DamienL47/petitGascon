@@ -8,6 +8,7 @@ use App\Entity\Met;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -24,8 +25,19 @@ class MenuType extends AbstractType
             ->add('titre')
             ->add('prix')
             ->add('description')
-            ->add('image')
-
+            ->add('image', FileType::class, [
+                'label' => 'Image',
+                'required' => false,
+                'mapped' => false
+            ])
+            ->add('id_met', EntityType::class, [
+                'class' => Met::class,
+                'label' => 'Plat',
+                'choice_label' => 'titre',
+                'multiple' => false,
+                'required' => false,
+                'mapped'=> false,
+            ])
             ;
 
     }
