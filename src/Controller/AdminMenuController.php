@@ -3,12 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Menu;
-use App\Entity\Met;
 use App\Form\MenuType;
 use App\Repository\CategoryRepository;
 use App\Repository\MenuRepository;
 use App\Repository\MetRepository;
-use Knp\Bundle\SnappyBundle\KnpSnappyBundle;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -69,7 +69,6 @@ class AdminMenuController extends AbstractController
 
         return $this->renderForm('admin/menu/new.html.twig', [
             'menu' => $menu,
-            'met' => $metRepository->findAll(),
             'form' => $form
         ]);
     }
@@ -77,18 +76,17 @@ class AdminMenuController extends AbstractController
     /**
      * @Route("admin/menu/{id}", name="admin_app_menu_show", methods={"GET"})
      */
-    public function show(Menu $menu, Met $met): Response
+    public function show(Menu $menu): Response
     {
         return $this->render('admin/menu/show.html.twig', [
             'menu' => $menu,
-            'met' => $met,
         ]);
     }
 
     /**
      * @Route("admin/menu/{id}/edit", name="admin_app_menu_edit", methods={"GET", "POST"})
      */
-    public function edit(SluggerInterface $slugger, Request $request, Menu $menu, MenuRepository $menuRepository, Met $met, MetRepository $metRepository): Response
+    public function edit(SluggerInterface $slugger, Request $request, Menu $menu, MenuRepository $menuRepository): Response
     {
 
         $form = $this->createForm(MenuType::class, $menu);
@@ -114,15 +112,12 @@ class AdminMenuController extends AbstractController
                 );
                 $menu->setImage($fileName);
             }
-            $met = $metRepository->find($form->get('id_met')->getViewData());
-            $menu->addIdMet($met);
             $menuRepository->add($menu, true);
 
             return $this->redirectToRoute('admin_app_menu_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('admin/menu/edit.html.twig', [
-            'met' => $met,
             'menu' => $menu,
             'form' => $form,
         ]);
@@ -131,7 +126,7 @@ class AdminMenuController extends AbstractController
     /**
      * @Route("admin/deleteMenu/{id}", name="admin_app_menu_delete", methods={"POST"})
      */
-    public function delete(Request $request, Menu $menu, MenuRepository $menuRepository, Met $met, MetRepository $metRepository): Response
+    public function delete(Request $request, Menu $menu, MenuRepository $menuRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$menu->getId(), $request->request->get('_token'))) {
             $menuRepository->remove($menu, true);
@@ -142,14 +137,46 @@ class AdminMenuController extends AbstractController
     }
 
     /**
-     * @Route("admin/menu/pdf", name="admin_menu_pdf")
+     * @Route("admin/menu/pdf/{id}", name="admin_menu_pdf")
      */
-    public function toPdf(MenuRepository $menuRepository, MetRepository $metRepository, CategoryRepository $categoryRepository)
+    public function toPdf($id, MenuRepository $menuRepository, MetRepository $metRepository, CategoryRepository $categoryRepository)
     {
-        return $this->render('admin/pdf/pdf.html.twig', [
-            'menu' => $menuRepository->findAll(),
-            'met' => $metRepository->findAll(),
-            'category' => $categoryRepository->findAll()
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+
+        $menu =$menuRepository->find($id);
+        $met = $metRepository->findAll();
+        $category = $categoryRepository->findAll();
+        $entree = $categoryRepository->find('1');
+        $plat = $categoryRepository->find('2');
+        $dessert = $categoryRepository->find('3');
+
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('admin/pdf/pdf.html.twig', [
+            'menu' => $menu,
+            'met' => $met,
+            'category' => $category,
+            'entree' => $entree,
+            'plat' => $plat,
+            'dessert' => $dessert,
+        ]);
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (inline view)
+        $dompdf->stream("menu.pdf", [
+            "Attachment" => false
         ]);
     }
 }

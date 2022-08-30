@@ -41,6 +41,7 @@
                     <td>
                         <a class="connect" href="{{ path('admin_app_menu_show', {'id': menu.id}) }}">Voir</a>
                         <a class="connect" href="{{ path('admin_app_menu_edit', {'id': menu.id}) }}">Editer</a>
+                        <a class="connect" href="{{ path('admin_menu_pdf', {'id': menu.id}) }}">Imprimer</a>
                     </td>
                 </tr>
             {% else %}

@@ -5,8 +5,10 @@ namespace App\Controller;
 use App\Entity\Menu;
 use App\Entity\Met;
 use App\Form\MetType;
+use App\Repository\CategoryRepository;
 use App\Repository\MenuRepository;
 use App\Repository\MetRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,7 +37,7 @@ class AdminMetController extends AbstractController
      * @Route("admin/new_met", name="admin_app_met_new", methods={"GET", "POST"})
      */
     // I create a public function for my controller. So the new() method will be called when a admin browses to it.
-    public function new(MenuRepository $menuRepository, Request $request, MetRepository $metRepository): Response
+    public function new(MenuRepository $menuRepository, Request $request, MetRepository $metRepository, CategoryRepository $categoryRepository): Response
     {
         // I define a variable for class instance new Met()
         $met = new Met();
@@ -48,8 +50,10 @@ class AdminMetController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // I recove that form input from the menu entity in a variable for access to the menu_id data
             $menu = $menuRepository->find($form->get('menu_id')->getViewData());
+            $category = $categoryRepository->find($form->get('category_id')->getViewData());
             // I add the menu data recover with my dish form
             $met->addMenu($menu);
+            $met->setCategoryId($category);
             // I add the inputs from dish form and i recove and flush the datas in my database
             $metRepository->add($met, true);
 
@@ -77,16 +81,19 @@ class AdminMetController extends AbstractController
     /**
      * @Route("admin/met/{id}/edit", name="admin_app_met_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Met $met, MetRepository $metRepository, MenuRepository $menuRepository): Response
+    public function edit(Request $request, Met $met, MetRepository $metRepository, MenuRepository $menuRepository, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(MetType::class, $met);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $menu = $menuRepository->find($form->get('menu_id')->getViewData());
             $met->addMenu($menu);
-            $metRepository->add($met, true);
 
+            $entityManager->persist($met);
+            $entityManager->flush();
+//            $metRepository->add($met, true);
             return $this->redirectToRoute('admin_app_met_index', [], Response::HTTP_SEE_OTHER);
         }
 

@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-use App\Entity\Category;
 use App\Entity\Menu;
 use App\Entity\Met;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -38,7 +37,7 @@ class MenuType extends AbstractType
                 'required' => false,
                 'mapped'=> false,
             ])
-            ;
+        ;
 
     }
 

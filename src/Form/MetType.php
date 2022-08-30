@@ -22,6 +22,8 @@ class MetType extends AbstractType
                 'class' => Menu::class,
                 'label' => 'Menu',
                 'choice_label' => 'titre',
+                'multiple' => false,
+                'required' => false,
                 'mapped'=> false,
             ])
             ->add('category_id', EntityType::class,[

@@ -23,18 +23,18 @@ class Met
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $titre;
+    private ?string $titre;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $prix;
+    private ?string $prix;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="mets")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $category_id;
+    private ?Category $category_id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
