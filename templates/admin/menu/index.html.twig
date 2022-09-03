@@ -4,6 +4,16 @@
 
 {% block main %}
     <div class="content">
+            {% for message in app.flashes('success') %}
+                <div class="message_success">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+                <div class="message_error">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
 
         <h1>Liste des Menus</h1>
 
@@ -38,7 +48,7 @@
                             <img class="mini" src="{{ asset('uploads/images/') ~ menu.image }}" alt="Image du menu">
                         {% endif %}
                         </td>
-                    <td>
+                    <td class="bouton-tableau">
                         <a class="connect" href="{{ path('admin_app_menu_show', {'id': menu.id}) }}">Voir</a>
                         <a class="connect" href="{{ path('admin_app_menu_edit', {'id': menu.id}) }}">Editer</a>
                         <a class="connect" href="{{ path('admin_menu_pdf', {'id': menu.id}) }}">Imprimer</a>

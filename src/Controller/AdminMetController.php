@@ -93,7 +93,6 @@ class AdminMetController extends AbstractController
 
             $entityManager->persist($met);
             $entityManager->flush();
-//            $metRepository->add($met, true);
             return $this->redirectToRoute('admin_app_met_index', [], Response::HTTP_SEE_OTHER);
         }
 

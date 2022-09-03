@@ -7,19 +7,21 @@ use App\Form\MenuType;
 use App\Repository\CategoryRepository;
 use App\Repository\MenuRepository;
 use App\Repository\MetRepository;
-use Dompdf\Dompdf;
-use Dompdf\Options;
+use App\services\PdfService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Twig\Environment;
 
 /**
  * @Route("admin/")
  */
 class AdminMenuController extends AbstractController
 {
+
     /**
      * @Route("admin/menus", name="admin_app_menu_index", methods={"GET"})
      */
@@ -45,9 +47,8 @@ class AdminMenuController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // Je vérifie que le formulaire contient une image et je n'applique la
             //récupération et la modification que s'il contient un fichier image
-            if (!$form->has('image')){
+            if ($image = $form->get('image')->getData()){
                 // Je récupère le fichier image depuis le formulaire
-                $image = $form->get('image')->getData();
                 // Je récupère le nom original du fichier
                 $originalFileName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
                 // J'utilise une instance de la classe slugger et sa méthode slug
@@ -86,7 +87,7 @@ class AdminMenuController extends AbstractController
     /**
      * @Route("admin/menu/{id}/edit", name="admin_app_menu_edit", methods={"GET", "POST"})
      */
-    public function edit(SluggerInterface $slugger, Request $request, Menu $menu, MenuRepository $menuRepository): Response
+    public function edit(SluggerInterface $slugger, Request $request, Menu $menu, MenuRepository $menuRepository, EntityManagerInterface $entityManager): Response
     {
 
         $form = $this->createForm(MenuType::class, $menu);
@@ -95,9 +96,8 @@ class AdminMenuController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // Je vérifie que le formulaire contient une image et je n'applique la
             //récupération et la modification que s'il contient un fichier image
-            if (!$form->has('image')){
+            if ($image = $form->get('image')->getData()){
                 // Je récupère le fichier image depuis le formulaire
-                $image = $form->get('image')->getData();
                 // Je récupère le nom original du fichier
                 $originalFileName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
                 // J'utilise une instance de la classe slugger et sa méthode slug
@@ -111,8 +111,12 @@ class AdminMenuController extends AbstractController
                     $fileName
                 );
                 $menu->setImage($fileName);
+                $menuRepository->add($menu,true);
             }
-            $menuRepository->add($menu, true);
+            $entityManager->persist($menu);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Votre menu à bien été mis à jour ! ✅');
 
             return $this->redirectToRoute('admin_app_menu_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -124,13 +128,12 @@ class AdminMenuController extends AbstractController
     }
 
     /**
-     * @Route("admin/deleteMenu/{id}", name="admin_app_menu_delete", methods={"POST"})
+     * @Route("admin/deleteMenu/{id}", name="admin_app_menu_delete", methods={"GET", "POST"})
      */
     public function delete(Request $request, Menu $menu, MenuRepository $menuRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$menu->getId(), $request->request->get('_token'))) {
             $menuRepository->remove($menu, true);
-
         }
 
         return $this->redirectToRoute('admin_app_menu_index', [], Response::HTTP_SEE_OTHER);
@@ -139,15 +142,8 @@ class AdminMenuController extends AbstractController
     /**
      * @Route("admin/menu/pdf/{id}", name="admin_menu_pdf")
      */
-    public function toPdf($id, MenuRepository $menuRepository, MetRepository $metRepository, CategoryRepository $categoryRepository)
+    public function toPdf($id, MenuRepository $menuRepository, MetRepository $metRepository, CategoryRepository $categoryRepository, PdfService $pdfService)
     {
-        // Configure Dompdf according to your needs
-        $pdfOptions = new Options();
-        $pdfOptions->set('defaultFont', 'Arial');
-
-        // Instantiate Dompdf with our options
-        $dompdf = new Dompdf($pdfOptions);
-
         $menu =$menuRepository->find($id);
         $met = $metRepository->findAll();
         $category = $categoryRepository->findAll();
@@ -155,8 +151,8 @@ class AdminMenuController extends AbstractController
         $plat = $categoryRepository->find('2');
         $dessert = $categoryRepository->find('3');
 
-        // Retrieve the HTML generated in our twig file
-        $html = $this->renderView('admin/pdf/pdf.html.twig', [
+
+        $html = $this->render('admin/pdf/pdf.html.twig', [
             'menu' => $menu,
             'met' => $met,
             'category' => $category,
@@ -164,19 +160,7 @@ class AdminMenuController extends AbstractController
             'plat' => $plat,
             'dessert' => $dessert,
         ]);
+        $pdfService->showPdfFile($html);
 
-        // Load HTML to Dompdf
-        $dompdf->loadHtml($html);
-
-        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
-        $dompdf->setPaper('A4', 'portrait');
-
-        // Render the HTML as PDF
-        $dompdf->render();
-
-        // Output the generated PDF to Browser (inline view)
-        $dompdf->stream("menu.pdf", [
-            "Attachment" => false
-        ]);
     }
 }

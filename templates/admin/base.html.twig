@@ -28,14 +28,6 @@
 <body>
 <main class="workZone">
     {% block main %}
-        <div class="content">
-            {% for message in app.flashes('success') %}
-                <h2>{{ message }}</h2>
-            {% endfor %}
-            {% for message in app.flashes('error') %}
-                <h2>{{ message }}</h2>
-            {% endfor %}
-        </div>
     {% endblock %}
 </main>
 

@@ -6,6 +6,9 @@
         {% for menu in menus %}
             {% if menu.isPublished %}
             <div class="menu">
+                {% if menu.image %}
+                    <img class="image_menu" src="../../public/uploads/images/{{ menu.image }}" alt="Image du menu">
+                {% endif %}
                 {% if menu.prix %}
                     <h1> {{ menu.titre }} {{ menu.prix }} </h1>
                     {% if menu.description %}
