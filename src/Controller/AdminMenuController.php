@@ -9,6 +9,8 @@ use App\Repository\MenuRepository;
 use App\Repository\MetRepository;
 use App\services\PdfService;
 use Doctrine\ORM\EntityManagerInterface;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -145,22 +147,49 @@ class AdminMenuController extends AbstractController
     public function toPdf($id, MenuRepository $menuRepository, MetRepository $metRepository, CategoryRepository $categoryRepository, PdfService $pdfService)
     {
         $menu =$menuRepository->find($id);
+        $image = $menuRepository->findAll();
         $met = $metRepository->findAll();
         $category = $categoryRepository->findAll();
         $entree = $categoryRepository->find('1');
         $plat = $categoryRepository->find('2');
         $dessert = $categoryRepository->find('3');
 
+        $pdfOptions = new Options();
 
-        $html = $this->render('admin/pdf/pdf.html.twig', [
+        $pdfOptions->setIsRemoteEnabled(true);
+        $pdfOptions->setIsPhpEnabled(true);
+
+        $dompdf = new Dompdf($pdfOptions);
+        $context = stream_context_create([
+            'ssl' => [
+                'verify_peer' => FALSE,
+                'verify_peer_name' => FALSE,
+                'allow_self_signed' => TRUE
+            ]
+        ]);
+
+        $dompdf->setHttpContext($context);
+
+        $html =  $this->renderView('admin/pdf/pdf.html.twig', [
             'menu' => $menu,
+            'image' => $image,
             'met' => $met,
             'category' => $category,
             'entree' => $entree,
             'plat' => $plat,
             'dessert' => $dessert,
         ]);
-        $pdfService->showPdfFile($html);
+
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $dompdf->stream("", [
+            'Attachment' => false
+        ]);
+
+        return new Response();
+
+        //$pdfService->showPdfFile($html);
 
     }
 }
