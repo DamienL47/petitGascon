@@ -4,69 +4,17 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <title> {{ menu.titre }} Pdf </title>
-    <style>
-
-        @font-face {
-            font-family: Tangerine-Bold;
-            src: url("vendor/dompdf/vendor/dompdf/dompdf/lib/fonts/Tangerine-Bold.ttf");
-        }
-        @font-face {
-            font-family: Tangerine-Regular;
-            src: url("vendor/dompdf/vendor/dompdf/dompdf/lib/fonts/Tangerine-Regular.ttf");
-        }
-
-        .logo_resto {
-            width: 100%;
-            position: absolute;
-            top: 60%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0.08;
-        }
-
-        .image {
-            width: 80%;
-            height: 200px;
-            margin: auto;
-            border: 1px solid black;
-        }
-        .image_menu_pdf {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .menu {
-            width: 100%;
-            line-height: 5px;
-            font-family: Tangerine-Bold, "Comic Sans MS", sans-serif;
-            text-align: center;
-        }
-        .titre {
-            font-size: 50px;
-        }
-        .titre_categorie {
-            font-size: 40px;
-            color: limegreen;
-        }
-        .met {
-            font-family: Tangerine-Regular, "Comic Sans MS", sans-serif;
-            font-size: 25px;
-        }
-        .mention {
-            margin-top: 100px;
-        }
-
-
-    </style>
+    <link rel="stylesheet" href="{{ absolute_url(asset('assets/css/stylePdf.css')) }}">
 </head>
 
 {% block main %}
     <div class="menu">
-        <img class="logo_resto" src="{{ absolute_url(asset('assets/img/logo_petit_gascon.png'))}}" alt="">
-        {% if menu.image %}
-            <img class="image_menu_pdf" src="{{ absolute_url(asset('uploads/images/' ~ menu.image))}}" alt="">
-        {% endif %}
+{#        <img width="100px" class="logo_resto" src="{{ absolute_url(asset('assets/img/logo_petit_gascon.jpg')) }}" alt="">#}
+        <div class="conteneur_img">
+            {% if menu.image %}
+                <img class="image_menu_pdf" src="{{ absolute_url(asset('uploads/images/' ~ menu.image))}}" alt="">
+            {% endif %}
+        </div>
         <div class="titre">
             {% if menu.prix %}
                <p>{{ menu.titre }} {{ menu.prix }}</p>
@@ -126,7 +74,7 @@
 {% endblock %}
 {% block footer %}
     <div class="mention menu">
-        <img width="50px" src="{{ absolute_url(asset('assets/img/fait_maison.png')) }}">
+        <img width="150px" src="{{ absolute_url(asset('assets/img/fait_maison_nb.png')) }}">
         <p>Tous nos plats sont faits maison, à partir de produits bruts et cuisinés sur place. </p>
     </div>
 {% endblock %}

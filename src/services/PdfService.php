@@ -14,15 +14,14 @@ class PdfService
     public function __construct()
     {
         $options = new Options();
-
-        $options -> setIsRemoteEnabled(TRUE);
-        $options -> setIsPhpEnabled(true);
-        $options -> setdebugKeepTemp(true);
-        $options -> setDefaultPaperSize('A4');
-        $options -> setDefaultPaperOrientation('portrait');
+        $options->setChroot(__DIR__);
+        $options->setIsRemoteEnabled(true);
+        $options->setIsPhpEnabled(true);
+        $options->setPdfBackend('CPDF');
 
         $this->domPdf = new Dompdf($options);
     }
+
 
 
     public function showPdfFile($html)

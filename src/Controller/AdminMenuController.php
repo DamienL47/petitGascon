@@ -146,33 +146,17 @@ class AdminMenuController extends AbstractController
      */
     public function toPdf($id, MenuRepository $menuRepository, MetRepository $metRepository, CategoryRepository $categoryRepository, PdfService $pdfService)
     {
-        $menu =$menuRepository->find($id);
-        $image = $menuRepository->findAll();
+        $menu = $menuRepository->find($id);
+        $images = $menuRepository->findOneBy(array('image'=> $menu));
         $met = $metRepository->findAll();
         $category = $categoryRepository->findAll();
         $entree = $categoryRepository->find('1');
         $plat = $categoryRepository->find('2');
         $dessert = $categoryRepository->find('3');
 
-        $pdfOptions = new Options();
-
-        $pdfOptions->setIsRemoteEnabled(true);
-        $pdfOptions->setIsPhpEnabled(true);
-
-        $dompdf = new Dompdf($pdfOptions);
-        $context = stream_context_create([
-            'ssl' => [
-                'verify_peer' => FALSE,
-                'verify_peer_name' => FALSE,
-                'allow_self_signed' => TRUE
-            ]
-        ]);
-
-        $dompdf->setHttpContext($context);
-
-        $html =  $this->renderView('admin/pdf/pdf.html.twig', [
+        $html = $this->render('admin/pdf/pdf.html.twig', [
             'menu' => $menu,
-            'image' => $image,
+            'image' => $images,
             'met' => $met,
             'category' => $category,
             'entree' => $entree,
@@ -180,16 +164,6 @@ class AdminMenuController extends AbstractController
             'dessert' => $dessert,
         ]);
 
-        $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'portrait');
-        $dompdf->render();
-        $dompdf->stream("", [
-            'Attachment' => false
-        ]);
-
-        return new Response();
-
-        //$pdfService->showPdfFile($html);
-
+        $pdfService->showPdfFile($html);
     }
 }
