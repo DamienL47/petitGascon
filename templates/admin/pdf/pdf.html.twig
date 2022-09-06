@@ -9,12 +9,10 @@
 
 {% block main %}
     <div class="menu">
-{#        <img width="100px" class="logo_resto" src="{{ absolute_url(asset('assets/img/logo_petit_gascon.jpg')) }}" alt="">#}
-        <div class="conteneur_img">
+        <img class="logo_resto" src="{{ absolute_url(asset('assets/img/logo_petit_gascon.png')) }}" alt="">
             {% if menu.image %}
                 <img class="image_menu_pdf" src="{{ absolute_url(asset('uploads/images/' ~ menu.image))}}" alt="">
             {% endif %}
-        </div>
         <div class="titre">
             {% if menu.prix %}
                <p>{{ menu.titre }} {{ menu.prix }}</p>
@@ -29,7 +27,7 @@
         </div>
         <div class="entree">
             {% if entree %}
-                <p class="titre_categorie">{{ entree.titre }} au choix</p>
+                <p class="titre_categorie"><span>{{ entree.titre }} au choix</span></p>
                 {% for met in menu.idMet %}
                     {% if met.categoryId == '1' %}
                         {% if met.prix %}
@@ -43,7 +41,7 @@
         </div>
         <div class="plat">
             {% if plat %}
-                <p class="titre_categorie">{{ plat.titre }} au choix</p>
+                <p class="titre_categorie"><span>{{ plat.titre }} au choix</span> </p>
                 {% for met in menu.idMet %}
                     {% if met.categoryId == '2' %}
                         {% if met.prix %}
@@ -57,7 +55,7 @@
         </div>
         <div class="dessert">
             {% if dessert %}
-                <p class="titre_categorie">{{ dessert.titre }} au choix </p>
+                <p class="titre_categorie"><span>{{ dessert.titre }} au choix</span>  </p>
                 {% for met in menu.idMet %}
                     {% if met.categoryId == '3' %}
                         {% if met.prix %}
