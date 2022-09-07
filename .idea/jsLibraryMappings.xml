@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{bootstrap, pdf, pdf.js}" />
+    <file url="PROJECT" libraries="{bootstrap, bootstrap-datepicker, bootstrap-datetimepicker, flatpickr, font-awesome, fr, fullcalendar, jquery, material_green, moment.js, pdf, pdf.js}" />
+    <includedPredefinedLibrary name="Node.js Core" />
   </component>
 </project>

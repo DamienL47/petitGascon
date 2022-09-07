@@ -158,5 +158,14 @@
     <orderEntry type="library" name="bootstrap" level="application" />
     <orderEntry type="library" name="pdf" level="application" />
     <orderEntry type="library" name="pdf.js" level="application" />
+    <orderEntry type="library" name="fullcalendar" level="application" />
+    <orderEntry type="library" name="bootstrap-datepicker" level="application" />
+    <orderEntry type="library" name="font-awesome" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="bootstrap-datetimepicker" level="application" />
+    <orderEntry type="library" name="moment.js" level="application" />
+    <orderEntry type="library" name="flatpickr" level="application" />
+    <orderEntry type="library" name="material_green" level="application" />
+    <orderEntry type="library" name="fr" level="application" />
   </component>
 </module>
