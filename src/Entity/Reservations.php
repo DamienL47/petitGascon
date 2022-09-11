@@ -20,32 +20,32 @@ class Reservations
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nom;
+    private ?string $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $prenom;
+    private ?string $prenom;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $email;
+    private ?string $email;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $tel;
+    private ?int $tel;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $nbPersonnes;
+    private ?int $nbPersonnes;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $dateReservation;
+    private ?\DateTimeInterface $dateReservation;
 
     /**
      * @ORM\ManyToOne(targetEntity=Status::class, inversedBy="reservations")
@@ -55,12 +55,12 @@ class Reservations
     /**
      * @ORM\OneToOne(targetEntity=Admin::class, cascade={"persist", "remove"})
      */
-    private $modifierPar_id;
+    private ?Admin $modifierPar_id;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $contraintes;
+    private ?string $contraintes;
 
     public function getId(): ?int
     {

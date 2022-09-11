@@ -23,7 +23,6 @@ class PdfService
     }
 
 
-
     public function showPdfFile($html)
     {
         $this->domPdf->loadHtml($html);

@@ -3,17 +3,11 @@
 {% block title %} Réservation en ligne {% endblock %}
 
 {% block stylesheets %}
+    {{ parent() }}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_green.css">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-{% endblock %}
-
-{%block javascripts %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
-    <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
 {% endblock %}
 
 {% block main %}
@@ -33,70 +27,82 @@
         <h1>Réservation en ligne</h1>
         <p>Veuillez renseigner tous les champs pour la bonne prise en compte de votre réservation.</p>
     </div>
-    <section class="container">
+    <section class="container_resa">
 
-        <div class="imgResa">
-            <img width="500px" src="{{asset('assets/img/img_gambas.png')}}" alt="Terrasse restaurant">
+
+        {{form_start(form)}}
+        <div class="champsFormResaGlobal">
+            <div>
+                <img class="imgResa" src="{{asset('assets/img/img_terrasseNuit.png')}}" alt="Terrasse restaurant">
+                <p class="text_front">Un moment de détente vous attends ...</p>
+            </div>
+            <div class="inputChamp">
+            {{form_label(form.dateReservation)}}
+            {{form_widget(form.dateReservation)}}
+            {{form_errors(form.dateReservation)}}
+            </div>
+
+        <div class="blocFormResa">
+            {{form_label(form.nbPersonnes)}}
+            {{form_widget(form.nbPersonnes, {'attr': {'class': 'champsFormResa'}})}}
+            {{form_errors(form.nbPersonnes)}}
+
+            {{form_label(form.nom)}}
+            {{form_widget(form.nom, {'attr': {'class': 'champsFormResa'}})}}
+            {{form_errors(form.nom)}}
+
+            {{form_label(form.prenom)}}
+            {{form_widget(form.prenom, {'attr': {'class': 'champsFormResa'}})}}
+            {{form_errors(form.prenom)}}
+
+            {{form_label(form.email)}}
+            {{form_widget(form.email, {'attr': {'class': 'champsFormResa'}})}}
+            {{form_errors(form.email)}}
+
+            {{form_label(form.tel)}}
+            {{form_widget(form.tel, {'attr': {'class': 'champsFormResa'}})}}
+            {{form_errors(form.tel)}}
+
+            {{form_label(form.contraintes)}}
+            {{form_widget(form.contraintes, { 'attr': {'class': 'champsFormResa'}})}}
+            {{form_errors(form.contraintes)}}
+
+        <button type="submit" class="connect resaBtn">Réserver</button>
+
+        </div>
         </div>
 
-
-            <form action="index_resa.html.twig" method="get">
-                <label for="date" class="textResa">Date de réservation</label>
-                <input class="form-control" type="datetime-local" id="date">
-            </form>
-            <div class="cotecalendrier">
-                <form action="index_resa.html.twig" method="get">
-                    <label for="nbPersonnes" class="textResa">Nombre de convives</label>
-                    <input type="number" class="form-control" id="nbPersonnes">
-
-                    <label for="nom" class="textResa">Nom</label>
-                    <input type="text" class="form-control" id="nom">
-
-                    <label for="prenom" class="textResa">Prénom</label>
-                    <input type="text" class="form-control" id="prenom">
-
-                    <label for="email" class="textResa">E-mail</label>
-                    <input type="text" class="form-control" id="email">
-
-                    <label for="tel" class="textResa">Téléphone</label>
-                    <input type="number" class="form-control" id="tel">
-
-                    <label for="contraintes">Des Allergies ? Un Régime spécial ? Précisez le ici !</label>
-                    <input type="text" class="form-control" id="contraintes">
-
-                    <button type="submit" class="connect">Réserver</button>
-
-                </form>
-            </div>
-{#        {{form_start(form)}}#}
-{#                {{form_label(form.dateReservation)}}#}
-{#            <div class="datetime-local">#}
-{#                {{form_widget(form.dateReservation, {'label' : 'Date de réservation', 'attr': {'class': 'form-control'}, 'type' : 'datetime-local' })}}#}
-{#            </div>#}
-{#                {{form_errors(form.dateReservation)}}#}
-
-{#        {{form_end(form)}}#}
+        {{form_end(form)}}
     </section>
-    <script>
+    {%block javascripts %}
+        {{ parent() }}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+        <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
+        <script type="text/javascript">
 
-        flatpickr("input[type=datetime-local]", {
-            enableTime: true,
-            inline: true,
-            minDate: "today",
-            allowInput: true,
-            minuteIncrement: 15,
-            minTime: "12:00",
-            maxTime: "22:30",
-            _minTime: "20:00",
-            _maxTime: "14:30",
-            dateFormat: "j-m-Y H:i",
-            disable : [
-                function (date) {
-                    return (date.getDay() === 2);
-                }
-            ],
-            locale : "fr",
-        });
+            flatpickr(".flatpickr.datetime", {
 
-    </script>
+                enableTime: true,
+                inline: true,
+                minDate: "today",
+                allowInput: true,
+                minuteIncrement: 15,
+                minTime: "12:00",
+                maxTime: "22:30",
+                _minTime: "20:00",
+                _maxTime: "14:30",
+                dateFormat: "Y-m-d H:i",
+                altFormat: "d/m/y H:i",
+                disable : [
+                    function (date) {
+                        return (date.getDay() === 2);
+                    }
+                ],
+                locale : "fr",
+            });
+        </script>
+    {% endblock %}
+
 {% endblock %}

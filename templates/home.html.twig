@@ -5,10 +5,11 @@
 {% block body %}
 
     {% block main %}
-
-        <h2 class="text text_front size">Bar Restaurant</h2>
-        <img  class="logoFaitMaison" src="{{ asset('assets/img/logo_fait_maison.png') }}" alt="Logo fait maison">
-        <h1 class="text surligne">Le Moulin du Petit Gascon</h1>
+        <div class="titre_accueil">
+            <h2 class="text text_front size">Bar Restaurant</h2>
+            <h1 class="text surligne">Le Moulin du Petit Gascon</h1>
+            <img  class="logoFaitMaison" src="{{ asset('assets/img/logo_fait_maison.png') }}" alt="Logo fait maison">
+        </div>
         <section class="slider">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
                 <div class="carousel-indicators">
@@ -49,9 +50,9 @@
                 </button>
             </div>
         </section>
-            <h2 class="text text_front size"> <span class="line">Nos Valeurs</span></h2>
-        <section>
-            <div class="container">
+            <h2 class="text text_front size"> <span class="line_value">Nos Valeurs</span></h2>
+        <section class="container">
+            <div class="bloc_container">
                 <div class="bloc_home">
                     <h3 class="text text_front size"><span class="line_1">Produit Frais</span> </h3>
                     <img class="content_article" src="{{ asset('assets/img/img_courge.png') }}" alt="Courge du jardin">

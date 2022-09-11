@@ -7,6 +7,15 @@ use App\Form\ReservationsType;
 use App\Repository\ReservationsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -29,25 +38,20 @@ class ReservationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $reservationsRepository->add($reservations, true);
+            $entityManager->persist($reservations);
+            $entityManager->flush();
 
             $email = (new Email())
                 ->from($reservations->getEmail())
                 ->to('damien.lataste@lapiscine.pro')
                 ->subject($reservations->getEmail())
-                ->text($reservations->getNom())
-                ->text($reservations->getPrenom())
-                ->text($reservations->getTel())
-                ->text($reservations->getEmail())
-                ->text($reservations->getDateReservation())
-                ->text($reservations->getNbPersonnes())
-                ->text($reservations->getContraintes());
+                ->html($reservations->getNom())
+                ->html($reservations->getPrenom())
+                ->html($reservations->getEmail());
 
             $mailer->send($email);
 
-            if ($email->sender($email)){
-                $this->addFlash('success', 'Votre demande de réservation à bien été transmise, un mail de confirmation vous sera envoyé pour valider votre réservation');
-            }
+            $this->addFlash('success', 'Votre demande de réservation à bien été transmise, un mail de confirmation vous sera envoyé pour valider votre réservation');
             return $this->redirectToRoute('reservationOnline');
         }
 
