@@ -4,7 +4,7 @@
 
 {% block header %}
     <div class="bandeau">
-        <h3>Bienvenue {{ app.user.prenom }}</h3>
+        <h1>Bienvenue {{ app.user.prenom }}</h1>
         <a href="{{ path('app_logout') }}">Déconnexion</a>
     </div>
     <div class="dashboard">
@@ -19,6 +19,7 @@
             <a class="onglet" href="{{ path('admin_create_admin')}}">👔  Nouvel Admin</a>
             <a class="onglet" href="{{ path('admin_app_met_new')}}">🍽  Ajouter un plat</a>
             <a class="onglet" href="{{ path('admin_app_category_new')}}">+  Ajouter une catégorie</a>
+            <a class="onglet" href="{{ path('liste_demande_contact')}}">Voir toutes les demandes de contact</a>
         </nav>
     </div>
 {% endblock %}
@@ -26,7 +27,42 @@
 {% block main %}
     <section class="content">
         <h2>Tableau de bord️</h2>
-        <h3>Vos demandes à traiter</h3>
+
+        <h3>Vos demandes de réservations à traiter</h3>
+        <div class="listContact">
+            <table class="table">
+                <thead>
+                <tr class="tableau">
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Tel</th>
+                    <th>Email</th>
+                    <th>Date de réservation</th>
+                    <th>Nombre de personne</th>
+                    <th>Message</th>
+                    <th>Gestion résas</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for reservation in reservations %}
+                        <tr class="tableau">
+                            <td>{{ reservation.id }}</td>
+                            <td>{{ reservation.nom }}</td>
+                            <td>{{ reservation.prenom }}</td>
+                            <td>{{ reservation.tel }}</td>
+                            <td>{{ reservation.email }}</td>
+                            <td>{{ reservation.dateReservation ? reservation.dateReservation|date('Y-m-d') : '' }}</td>
+                            <td>{{ reservation.nbPersonnes }}</td>
+                            <td>{{ reservation.contraintes }}</td>
+                            <td> à developper </td>
+                        </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Vos demandes de contact à traiter</h3>
 
         <div class="listContact">
             <table class="table">
@@ -51,13 +87,12 @@
                             <td>{{ contact.nom }}</td>
                             <td>{{ contact.prenom }}</td>
                             <td>{{ contact.tel }}</td>
-                            <td>{{ contact.email }}</td>
+                            <td><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></td>
                             <td>{{ contact.sujet }}</td>
                             <td>{{ contact.message }}</td>
                             <td>{{ contact.createdAt ? contact.createdAt|date('Y-m-d') : '' }}</td>
                             <td>
-                                <label for="lu"></label>
-                                <input type="checkbox" id="lu" name="lu">
+                                <a href="{{path('admin_dashboard_contact', { id: contact.id }) }}">Marquer comme lu</a>
                             </td>
                         </tr>
                     {% endif %}

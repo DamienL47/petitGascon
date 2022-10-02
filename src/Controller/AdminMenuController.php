@@ -7,7 +7,7 @@ use App\Form\MenuType;
 use App\Repository\CategoryRepository;
 use App\Repository\MenuRepository;
 use App\Repository\MetRepository;
-use App\services\PdfService;
+use App\Services\PdfService;
 use Doctrine\ORM\EntityManagerInterface;
 use Dompdf\Dompdf;
 use Dompdf\Options;

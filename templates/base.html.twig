@@ -14,21 +14,22 @@
     </head>
     <header>
         {% block header %}
-            <nav class="navBar">
-                <a class="btn_menu accueil" href="{{ path('home') }}"> Accueil </a>
-                <a class="btn_menu accueil" href="{{ path('app_menu_index') }}"> Nos menus </a>
-                <a class="burgerDisable" href="{{ path('admin_dashboard') }}"><img class="logoIconeMenu accueil" title="Connexion admin" src="{{ asset('assets/img/logo_petit_gascon.png') }}" alt="Logo Restaurant"></a>
-                <a class="btn_menu accueil" title="Bientôt disponible" href="{{ path('reservationOnline') }}"> Réservation en ligne </a>
-                <a class="btn_menu accueil" href="{{ path('app_contact')}}"> Contact </a>
-            </nav>
-            <div class="ifBurger">
-                <a href="{{ path('admin_dashboard') }}"><img class="logoIconeMenu" title="Connexion admin" src="{{ asset('assets/img/logo_petit_gascon.png') }}" alt="Logo Restaurant"></a>
+                <nav class="navBar">
+                    <a class="btn_menu accueil" href="{{ path('home') }}"> Accueil </a>
+                    <a class="btn_menu accueil" href="{{ path('app_menu_index') }}"> Nos menus </a>
+                    <a class="burgerDisable" href="{{ path('admin_dashboard') }}"><img class="logoIconeMenu accueil" title="Connexion admin" src="{{ asset('assets/img/logo_petit_gascon.png') }}" alt="Logo Restaurant"></a>
+                    <a class="btn_menu accueil" title="Bientôt disponible" href="{{ path('reservationOnline') }}"> Réservation en ligne </a>
+                    <a class="btn_menu accueil" href="{{ path('app_contact')}}"> Contact </a>
+                </nav>
+                <div class="ifBurger">
+                    <a href="{{ path('admin_dashboard') }}"><img class="logoIconeMenu" title="Connexion admin" src="{{ asset('assets/img/logo_petit_gascon.png') }}" alt="Logo Restaurant"></a>
+                </div>
+                <button type="button" aria-label="toggle curtain navigation" class="nav-toggler">
+                <span class="line l1"></span>
+                <span class="line l2"></span>
+                <span class="line l3"></span>
+                </button>
             </div>
-            <button type="button" aria-label="toggle curtain navigation" class="nav-toggler">
-            <span class="line l1"></span>
-            <span class="line l2"></span>
-            <span class="line l3"></span>
-            </button>
         {% endblock %}
     </header>
     <body>

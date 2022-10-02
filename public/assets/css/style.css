@@ -211,10 +211,11 @@ body {
 
 .btn_menu {
     width: 20vw;
-    height: 90px;
+    height: 3em;
     border: 1px solid limegreen;
     background-color: limegreen;
-    color: white;
+    color: black;
+    overflow: hidden;
     text-decoration: none;
     border-radius: 50px;
     box-shadow: 5px 5px 10px black;
@@ -230,9 +231,10 @@ body {
 
 .accueil {
     font-family: Tangerine-regular, "Comic Sans MS", sans-serif;
-    font-size: xx-large;
+    font-size: 25px;
     text-align: center;
-    padding-top: 20px;
+    padding-top: 18px;
+    font-weight: bolder;
 }
 
 .logoIconeMenu {
@@ -246,7 +248,7 @@ body {
 
 .surligne {
     font-family: Tangerine-regular, Arial, sans-serif;
-    font-size: 3em;
+    font-size: 2.5em;
     background-color: black;
     border-radius: 15px;
     color: white;
@@ -263,7 +265,7 @@ body {
     position: absolute;
     width: 6%;
     height: auto;
-    top: -29px;
+    top: -18px;
     right: 32%;
     border: 1px solid limegreen;
     border-radius: 10px 10px 0 0;
@@ -302,7 +304,7 @@ body {
 span.line_value::after {
     content: "";
     background-color: limegreen;
-    width: 15%;
+    width: 16%;
     height: 20%;
     margin-left: 50%;
     display: block;
@@ -315,7 +317,7 @@ span.line_value::after {
 
 span.line_value:hover::after {
     animation: line 1s 0s;
-    width: 30%;
+    width: 16%;
 }
 
 .bloc_container {
@@ -344,7 +346,7 @@ span.line_value:hover::after {
 span.line_1::after {
     content: "";
     background-color: limegreen;
-    width: 45%;
+    width: 60%;
     height: 3%;
     display: block;
 
@@ -357,13 +359,13 @@ span.line_1::after {
 
 span.line_1:hover::after {
     animation: line 1s 0s;
-    width: 45%;
+    width: 60%;
 }
 
 span.line_2::after {
     content: "";
     background-color: limegreen;
-    width: 45%;
+    width: 60%;
     height: 3%;
     display: block;
 
@@ -376,12 +378,12 @@ span.line_2::after {
 
 span.line_2:hover::after {
     animation: line 1s 0s;
-    width: 45%;
+    width: 60%;
 }
 span.line_3::after {
     content: "";
     background-color: limegreen;
-    width: 45%;
+    width: 60%;
     height: 3%;
     display: block;
 
@@ -394,7 +396,7 @@ span.line_3::after {
 
 span.line_3:hover::after {
     animation: line 1s 0s;
-    width: 45%;
+    width: 60%;
 }
 
 .content_article {
@@ -601,8 +603,136 @@ h4:hover::after {
     padding: 10px;
     font-size: 20px;
 }
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+    .nav-toggler {
+        display: none;
+    }
+    .logoIconeMenu {
+        width: 13vw;
+    }
+    .btn_menu {
+        width: 27vw;
+        height: 65px;
+        border: 1px solid limegreen;
+        background-color: limegreen;
+        color: black;
+        text-decoration: none;
+        border-radius: 50px;
+        box-shadow: 5px 5px 10px black;
+        box-sizing: border-box;
+    }
+    .accueil {
+        font-size: 23px;
+        padding-top: 13px;
+    }
 
-@media screen and (min-width: 967px) and (max-width: 1440px) {
+    .surligne {
+        font-size: 2.5em;
+        width: 60vw;
+    }
+
+    .logoFaitMaison {
+        top: -13px;
+        width: 8%;
+        right: 23%;
+    }
+    .carousel-inner {
+        border-radius: 30px;
+        height: 39vh;
+    }
+    span.line_value::after {
+        width: 25%;
+        height: 20%;
+        margin-left: 50%;
+        display: block;
+
+        position: absolute;
+        bottom: 18%;
+        z-index: -1;
+        transform: translateX(-50%);
+    }
+
+    span.line_value:hover::after {
+        animation: line 1s 0s;
+        width: 25%;
+    }
+    span.line_1::after {
+        width: 80%;
+        position: absolute;
+        left: 50%;
+        top: 10%;
+        z-index: -1;
+        transform: translate(-50%, 50%);
+    }
+
+    span.line_1:hover::after {
+        animation: line 1s 0s;
+        width: 80%;
+    }
+
+    span.line_2::after {
+        width: 80%;
+        position: absolute;
+        left: 50%;
+        top: 10%;
+        z-index: -1;
+        transform: translate(-50%, 50%);
+    }
+
+    span.line_2:hover::after {
+        animation: line 1s 0s;
+        width: 80%;
+    }
+
+    span.line_3::after {
+        width: 80%;
+        position: absolute;
+        left: 50%;
+        top: 10%;
+        z-index: -1;
+        transform: translate(-50%, 50%);
+    }
+
+    span.line_3:hover::after {
+        animation: line 1s 0s;
+        width: 80%;
+    }
+
+    .container_resa {
+        justify-content: center;
+    }
+    .imgResa {
+        width: 70vw;
+    }
+    .inputChamp {
+        height: 20px;
+        width: 35vw;
+        display: flex;
+        flex-direction: column;
+    }
+    .blocFormResa {
+        width: 50vw;
+    }
+    .contactPage{
+        margin: auto;
+    }
+
+    .maps {
+        width: 30%;
+        text-align: center;
+    }
+
+    .blocContact {
+        width: 30%;
+        text-align: center;
+    }
+
+    .blocFormContact{
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 967px) and (max-width: 1023px) {
     .nav-toggler {
         display: none;
     }
@@ -624,6 +754,7 @@ h4:hover::after {
         font-size: x-large;
         padding-top: 25px;
     }
+
     .surligne {
         font-size: 3.1em;
         width: 60vw;
@@ -638,6 +769,7 @@ h4:hover::after {
         border-radius: 30px;
         height: 65vh;
     }
+
 }
 
 
@@ -652,7 +784,7 @@ h4:hover::after {
         height: 50px;
         border: 1px solid limegreen;
         background-color: limegreen;
-        color: white;
+        color: black;
         text-decoration: none;
         border-radius: 50px;
         box-shadow: 5px 5px 10px black;
@@ -737,6 +869,10 @@ h4:hover::after {
     span.line_3:hover::after {
         animation: line 1s 0s;
         width: 40%;
+    }
+
+    .menu {
+        width: 100vh;
     }
 
     .container_resa {
@@ -851,7 +987,7 @@ h4:hover::after {
     }
     .btn_menu {
         color: black;
-        line-height: 10px;
+        line-height: 5px;
         display: block;
         text-decoration: none;
         border: 0;
@@ -867,6 +1003,7 @@ h4:hover::after {
     .accueil {
         font-size: 2em;
         width: 100vw;
+        padding-top: 30px;
     }
     .logoIconeMenu {
         display: none;
@@ -876,18 +1013,27 @@ h4:hover::after {
     }
 
     .surligne {
-        font-size: 1.5em;
-        text-align: left;
+        font-size: 23px;
         width: 80vw;
     }
 
     .logoFaitMaison {
-        top: -15px;
-        width: 15%;
-        right: 15%;
+        top: -5px;
+        width: 13%;
+        right: 13%;
     }
+
+
     .carousel-inner {
-        display: none;
+        width: 80vw;
+        height: 23vh;
+        border-radius: 20px;
+    }
+
+    .carousel img {
+        position: absolute;
+        top: -1px;
+        object-fit: cover;
     }
 
     span.line_value::after {

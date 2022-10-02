@@ -44,10 +44,7 @@ class ReservationController extends AbstractController
             $email = (new Email())
                 ->from($reservations->getEmail())
                 ->to('damien.lataste@lapiscine.pro')
-                ->subject($reservations->getEmail())
-                ->html($reservations->getNom())
-                ->html($reservations->getPrenom())
-                ->html($reservations->getEmail());
+                ->subject($reservations->getEmail());
 
             $mailer->send($email);
 
