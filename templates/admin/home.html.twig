@@ -20,85 +20,110 @@
             <a class="onglet" href="{{ path('admin_app_met_new')}}">🍽  Ajouter un plat</a>
             <a class="onglet" href="{{ path('admin_app_category_new')}}">+  Ajouter une catégorie</a>
             <a class="onglet" href="{{ path('liste_demande_contact')}}">Voir toutes les demandes de contact</a>
+            <a class="onglet" href="{{ path('app_admin_reservation_edit_index')}}">Voir toutes les demandes de réservation</a>
         </nav>
     </div>
 {% endblock %}
 
 {% block main %}
-    <section class="content">
-        <h2>Tableau de bord️</h2>
 
-        <h3>Vos demandes de réservations à traiter</h3>
-        <div class="listContact">
-            <table class="table">
-                <thead>
-                <tr class="tableau">
-                    <th>Id</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Tel</th>
-                    <th>Email</th>
-                    <th>Date de réservation</th>
-                    <th>Nombre de personne</th>
-                    <th>Message</th>
-                    <th>Gestion résas</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for reservation in reservations %}
-                        <tr class="tableau">
+
+    <section class="workZone">
+        <div class="content">
+            <h2>Tableau de bord️</h2>
+            {% include 'modal_message_flash/_modal.html.twig' %}
+
+            <h3>Vos demandes de réservations à traiter</h3>
+            <a class="connect" href="{{ path('app_admin_reservation_edit_new') }}">Créer une réservation</a>
+            <div class="listContact">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Email</th>
+                        <th>Tel</th>
+                        <th>NbPersonnes</th>
+                        <th>DateReservation</th>
+                        <th>Contraintes</th>
+                        <th>Statut</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for reservation in reservations %}
+                        <tr>
                             <td>{{ reservation.id }}</td>
                             <td>{{ reservation.nom }}</td>
                             <td>{{ reservation.prenom }}</td>
-                            <td>{{ reservation.tel }}</td>
                             <td>{{ reservation.email }}</td>
-                            <td>{{ reservation.dateReservation ? reservation.dateReservation|date('Y-m-d') : '' }}</td>
+                            <td>{{ reservation.tel }}</td>
                             <td>{{ reservation.nbPersonnes }}</td>
+                            <td>{{ reservation.dateReservation ? reservation.dateReservation|date('d-m-Y H:i') : '' }}</td>
                             <td>{{ reservation.contraintes }}</td>
-                            <td> à developper </td>
-                        </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-
-        <h3>Vos demandes de contact à traiter</h3>
-
-        <div class="listContact">
-            <table class="table">
-                <thead>
-                <tr class="tableau">
-                    <th>Id</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Tel</th>
-                    <th>Email</th>
-                    <th>Sujet</th>
-                    <th>Message</th>
-                    <th>Date du message</th>
-                    <th>Lu</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for contact in contact %}
-                    {% if not contact.lu %}
-                        <tr class="tableau">
-                            <td>{{ contact.id }}</td>
-                            <td>{{ contact.nom }}</td>
-                            <td>{{ contact.prenom }}</td>
-                            <td>{{ contact.tel }}</td>
-                            <td><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></td>
-                            <td>{{ contact.sujet }}</td>
-                            <td>{{ contact.message }}</td>
-                            <td>{{ contact.createdAt ? contact.createdAt|date('Y-m-d') : '' }}</td>
+                            {% if reservation.statusId == '1' %}
+                                <td><p style="color: green">Validé</p></td>
+                            {% elseif reservation.statusId == '2' %}
+                                <td><p style="color: orange">En attente</p></td>
+                            {% elseif reservation.statusId == null %}
+                                <td><p style="color: blue">à modifier</p></td>
+                            {% elseif reservation.statusId == '3' %}
+                                <td><p style="color: red">Refusé</p></td>
+                            {% endif %}
                             <td>
-                                <a href="{{path('admin_dashboard_contact', { id: contact.id }) }}">Marquer comme lu</a>
+                                <a class="connect" href="{{path('app_admin_reservation_edit_show', {id: reservation.id})}}">Voir</a>
+                                <a class="connect" href="{{path('app_admin_reservation_edit_edit', {id: reservation.id})}}">Éditer</a>
+                                {{ include('admin/admin_reservation_edit/_delete_form.html.twig') }}
                             </td>
                         </tr>
-                    {% endif %}
-                {% endfor %}
-                </tbody>
-            </table>
+                    {% else %}
+                        <tr>
+                            <td colspan="9">Pas de réservations en attente</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Vos demandes de contact à traiter</h3>
+
+            <div class="listContact">
+                <table class="table">
+                    <thead>
+                    <tr class="tableau">
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Tel</th>
+                        <th>Email</th>
+                        <th>Sujet</th>
+                        <th>Message</th>
+                        <th>Date du message</th>
+                        <th class="lu">Lu</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for contact in contact %}
+                        {% if not contact.lu %}
+                            <tr class="tableau">
+                                <td>{{ contact.id }}</td>
+                                <td>{{ contact.nom }}</td>
+                                <td>{{ contact.prenom }}</td>
+                                <td>{{ contact.tel }}</td>
+                                <td><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></td>
+                                <td>{{ contact.sujet }}</td>
+                                <td>{{ contact.message }}</td>
+                                <td>{{ contact.createdAt ? contact.createdAt|date('Y-m-d') : '' }}</td>
+                                <td class="lu">
+                                    <a class="connect" href="{{path('admin_dashboard_contact', { id: contact.id }) }}">Marquer lu</a>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 {% endblock %}

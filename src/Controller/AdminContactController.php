@@ -45,7 +45,7 @@ class AdminContactController extends AbstractController
     {
         $contact = $contactRepository;
 
-        if ($contact->setLu(true) or $contact->setLu(null))
+        if ($contact)
         {
             $contact = $contactRepository->findAll();
         }

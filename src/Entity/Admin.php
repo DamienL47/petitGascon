@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\AdminRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -24,28 +25,34 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $email;
+    private ?string $email;
 
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    private array $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
-    private $password;
+    private string $password;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isVerified = false;
+    private bool $isVerified = false;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $prenom;
+    private ?string $prenom;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Reservations::class, inversedBy="modifierPar_id")
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private ArrayCollection $reservations;
 
     public function getId(): ?int
     {
@@ -164,5 +171,28 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /**
+     * @return ArrayCollection
+     */
+    public function getReservations(): ArrayCollection
+    {
+        return $this->reservations;
+    }
+
+    /**
+     * @param ArrayCollection $reservations
+     */
+    public function setReservations(ArrayCollection $reservations): void
+    {
+        $this->reservations = $reservations;
+    }
+
+
+
+
+    public function __toString()
+    {
+        return (string) $this->getId();
+    }
 
 }

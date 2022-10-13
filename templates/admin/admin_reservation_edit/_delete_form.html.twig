@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_admin_reservation_edit_delete', {'id': reservation.id}) }}" onsubmit="return confirm('Confirmez-vous la suppression? Attention, cette action est irreversible');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ reservation.id) }}">
+    <button class="connect red">Supprimer</button>
+</form>

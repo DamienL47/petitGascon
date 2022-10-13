@@ -1,0 +1,50 @@
+{% extends 'admin/home.html.twig' %}
+
+{% block title %}Réservations index{% endblock %}
+
+{% block main %}
+    <div class="content">
+
+        <h1>Liste des réservations</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Email</th>
+                    <th>Tel</th>
+                    <th>NbPersonnes</th>
+                    <th>DateReservation</th>
+                    <th>Contraintes</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for reservation in reservations %}
+                <tr>
+                    <td>{{ reservation.id }}</td>
+                    <td>{{ reservation.nom }}</td>
+                    <td>{{ reservation.prenom }}</td>
+                    <td>{{ reservation.email }}</td>
+                    <td>{{ reservation.tel }}</td>
+                    <td>{{ reservation.nbPersonnes }}</td>
+                    <td>{{ reservation.dateReservation ? reservation.dateReservation|date('d-m-Y H:i') : '' }}</td>
+                    <td>{{ reservation.contraintes }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_reservation_edit_show', {'id': reservation.id}) }}">Voir</a>
+                        <a href="{{ path('app_admin_reservation_edit_edit', {'id': reservation.id}) }}">Éditer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="9">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="connect" href="{{ path('app_admin_reservation_edit_new') }}">Créer une réservation</a>
+    </div>
+{% endblock %}

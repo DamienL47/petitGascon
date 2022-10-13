@@ -22,12 +22,12 @@ class Status
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $titre;
+    private ?string $titre;
 
     /**
      * @ORM\OneToMany(targetEntity=Reservations::class, mappedBy="status_id")
      */
-    private $reservations;
+    private Collection $reservations;
 
     public function __construct()
     {
@@ -79,5 +79,10 @@ class Status
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->getId();
     }
 }

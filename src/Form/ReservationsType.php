@@ -2,9 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Reservations;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
@@ -35,7 +33,7 @@ class ReservationsType extends AbstractType
                 'label' => 'Nombre de personnes'
             ])
             ->add('dateReservation', FlatpickrDateTimeType::class, [
-                'label' => 'Date de réservation: '
+                'label' => 'Date de réservation: ',
             ])
             ->add('contraintes', TextareaType::class, [
                 'label' => 'Message',

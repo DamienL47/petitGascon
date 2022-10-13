@@ -19,7 +19,7 @@ class FlatpickrDateTimeType extends AbstractType
     public function configureOptions(OptionsResolver  $resolver)
     {
         $resolver -> setDefaults (array(
-            'widget' => 'single_text' ,
+            'widget' => 'single_text',
             'attr' => array(
             'placeholder' => 'Sélectionnez une date...' ,
             'class' => " flatpickr datetime ",
@@ -30,8 +30,8 @@ class FlatpickrDateTimeType extends AbstractType
     /**
      * @retour mixed
      */
-    public function getParent()
+    public function getParent(): string
     {
-        return  DateTimeType::class;
+        return DateTimeType::class;
     }
 }

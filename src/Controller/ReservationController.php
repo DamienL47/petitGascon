@@ -3,57 +3,59 @@
 namespace App\Controller;
 
 use App\Entity\Reservations;
-use App\Form\ReservationsType;
+use App\Form\Reservations1Type;
 use App\Repository\ReservationsRepository;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\StatusRepository;
+use App\Services\MailerService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TelType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class ReservationController extends AbstractController
 {
 
     /**
      * @Route("/reservationOnline", name="reservationOnline")
-     * @throws TransportExceptionInterface
      */
-    public function newReservation(Request $request, ReservationsRepository $reservationsRepository, MailerInterface $mailer, EntityManagerInterface $entityManager): Response
+    public function newReservation(Request $request, ReservationsRepository $reservationsRepository, MailerService $mailerService, StatusRepository $statusRepository): Response
     {
-        $reservations = new Reservations();
-        $form = $this->createForm(ReservationsType::class, $reservations);
+        $reservation = new Reservations();
+        $form = $this->createForm(Reservations1Type::class, $reservation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $entityManager->persist($reservations);
-            $entityManager->flush();
-
-            $email = (new Email())
-                ->from($reservations->getEmail())
-                ->to('damien.lataste@lapiscine.pro')
-                ->subject($reservations->getEmail());
-
-            $mailer->send($email);
-
-            $this->addFlash('success', 'Votre demande de réservation à bien été transmise, un mail de confirmation vous sera envoyé pour valider votre réservation');
-            return $this->redirectToRoute('reservationOnline');
+            try {
+                $mailerService->send(
+                    "Nouvelle demande de contact client",
+                    "app@mailhog.local",
+                    "test@mailhog.local",
+                    "templatesMails/templateResa.html.twig", [
+                        "reservation" => $form->getData(),
+                        "nom" => $reservation->getNom(),
+                        "prenom" => $reservation->getPrenom(),
+                        "tel" => $reservation->getTel(),
+                        "email" => $reservation->getEmail(),
+                        "Date de réservation" => $reservation->getDateReservation(),
+                        "Nombre de personnes" => $reservation->getNbPersonnes(),
+                        "Message" => $reservation->getContraintes(),
+                    ]
+                );
+            } catch (TransportExceptionInterface|LoaderError|RuntimeError|SyntaxError $e) {
+                return new Response("Le mail n'a pas pu être envoyé".$e);
+            }
+            $reservationsRepository->add($reservation, true);
+            $this->addFlash('success', 'Votre demande de réservation à bien été transmise, un mail de confirmation vous sera envoyé dès que le restaurant aura validé votre réservation');
+            return $this->redirectToRoute('reservationOnline', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('reservation_front/index_resa.html.twig', [
-            'form' => $form->createView(),
+        return $this->renderForm('reservation_front/index_resa.html.twig', [
+            'reservation' => $reservation,
+            'form' => $form
         ]);
     }
 }

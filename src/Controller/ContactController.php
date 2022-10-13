@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class ContactController extends AbstractController
 {
@@ -28,19 +31,22 @@ class ContactController extends AbstractController
             $entityManager->flush();
 
             // Email
-            $mailerService->send(
-                "Nouvelle demande de contact client",
-                "admin@test.fr",
-                "damien.lataste@lapiscine.pro",
-                "contact/templateMailContact.html.twig", [
-                    "nom" => $contact->getNom(),
-                    "prenom" => $contact->getPrenom(),
-                    "tel" => $contact->getTel(),
-                    "email" => $contact->getEmail(),
-                    "sujet" => $contact->getSujet(),
-                    "message" => $contact->getMessage(),
-                ]
-            );
+            try {
+                $mailerService->send(
+                    "Nouvelle demande de contact client",
+                    "admin@test.fr",
+                    "damien.lataste@lapiscine.pro",
+                    "contact/templateMailContact.html.twig", [
+                        "nom" => $contact->getNom(),
+                        "prenom" => $contact->getPrenom(),
+                        "tel" => $contact->getTel(),
+                        "email" => $contact->getEmail(),
+                        "sujet" => $contact->getSujet(),
+                        "message" => $contact->getMessage(),
+                    ]
+                );
+            } catch (TransportExceptionInterface|LoaderError|RuntimeError|SyntaxError $e) {
+            }
 
             $this->addFlash('success', 'Votre demande à bien été transmise, nous vous répondrons dans les meilleurs délais, Merci. ');
             return $this->redirectToRoute('app_contact');

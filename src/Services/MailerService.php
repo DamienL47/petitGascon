@@ -60,7 +60,7 @@ class MailerService
 
             $this->mailer->send($email);
         } catch (TransportException $exception) {
-            print $exception->getMessage()."\n";
+            print $exception->getMessage()."Attention, aucun e-mail n'a été envoyé !";
             throw $exception;
         }
     }

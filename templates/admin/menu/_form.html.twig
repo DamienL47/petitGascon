@@ -1,25 +1,27 @@
-{{ form_start(form, { 'enctype': "multipart/form-data", 'attr': {'class': 'champsForm'}}) }}
 
-    {{ form_label(form.titre) }}
-    {{ form_widget(form.titre) }}
-    {{ form_errors(form.titre) }}
+<div class="blocForm">
+    {{ form_start(form, { 'enctype': "multipart/form-data", 'attr': {'class': 'champsForm'}}) }}
 
-    {{ form_label(form.prix) }}
-    {{ form_widget(form.prix) }}
-    {{ form_errors(form.prix) }}
+        {{ form_label(form.titre) }}
+        {{ form_widget(form.titre) }}
+        {{ form_errors(form.titre) }}
 
-    {{ form_label(form.description) }}
-    {{ form_widget(form.description) }}
-    {{ form_errors(form.description) }}
+        {{ form_label(form.prix) }}
+        {{ form_widget(form.prix) }}
+        {{ form_errors(form.prix) }}
 
-    {{ form_label(form.image) }}
-    {{ form_widget(form.image) }}
-    {{ form_errors(form.image) }}
+        {{ form_label(form.description) }}
+        {{ form_widget(form.description) }}
+        {{ form_errors(form.description) }}
 
-    {{ form_label(form.is_published) }}
-    {{ form_widget(form.is_published, {'attr': {'class': 'checkbox'}}) }}
-    {{ form_errors(form.is_published) }}
+        {{ form_label(form.image) }}
+        {{ form_widget(form.image) }}
+        {{ form_errors(form.image) }}
 
+        {{ form_label(form.is_published) }}
+        {{ form_widget(form.is_published, {'attr': {'class': 'checkbox'}}) }}
+        {{ form_errors(form.is_published) }}
 
-    <button class="connect">{{ button_label|default('Enregistrer') }}</button>
-{{ form_end(form) }}
+        <button class="connect">{{ button_label|default('Enregistrer') }}</button>
+    {{ form_end(form) }}
+</div>

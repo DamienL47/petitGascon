@@ -50,10 +50,11 @@ class Reservations
     /**
      * @ORM\ManyToOne(targetEntity=Status::class, inversedBy="reservations")
      */
-    private $status_id;
+    private ?Status $status_id;
 
     /**
-     * @ORM\OneToOne(targetEntity=Admin::class, cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=Admin::class, mappedBy="admin")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private ?Admin $modifierPar_id;
 
@@ -174,4 +175,5 @@ class Reservations
 
         return $this;
     }
+
 }
