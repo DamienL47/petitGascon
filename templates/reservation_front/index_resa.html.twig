@@ -51,15 +51,23 @@
             {{form_widget(form.email, {'attr': {'class': 'champsFormResa'}})}}
             {{form_errors(form.email)}}
 
-            {{form_label(form.tel)}}
-            {{form_widget(form.tel, {'attr': {'class': 'champsFormResa'}})}}
-            {{form_errors(form.tel)}}
-
+            {{ form_label(form.tel) }}
+            {% if form_errors(form.tel) %}
+                {{ form_help(form.tel) }}
+            {% endif %}
+            {{ form_widget(form.tel, {'attr': {'class': 'champsFormResa'}}) }}
+            {{ form_errors(form.tel) }}
+            
             {{form_label(form.contraintes)}}
-            {{form_widget(form.contraintes, { 'attr': {'class': 'champsFormResa'}})}}
+            {{form_widget(form.contraintes, { 'attr': {'class': 'champsFormResa placeCaptcha2'}})}}
             {{form_errors(form.contraintes)}}
 
-        <button type="submit" class="connect resaBtn" data-bs-target="modal">Réserver</button>
+            <div class="g-recaptcha" data-sitekey="6LfWU34iAAAAAACyJehieXSmo6p1TRtm2I46Ud1z">
+                {{form_widget(form.captcha)}}
+                {{form_errors(form.captcha)}}
+            </div>
+
+        <button type="submit" class="connect resaBtn placeCaptcha" data-bs-target="modal">Réserver</button>
             <div class="masquer">
                 {{form_label(form.status_id)}}
                 {{form_widget(form.status_id)}}

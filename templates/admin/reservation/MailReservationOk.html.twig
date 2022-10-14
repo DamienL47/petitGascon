@@ -8,13 +8,14 @@
     <title>Votre réservation</title>
 </head>
 <body>
-    <h1>Le status de votre réservation à changé</h1>
+    <h1>Le statut de votre réservation a changé !</h1>
 
     <h2>Restaurant "Le moulin du petit gascon"</h2>
 
     <p>Cher client,</p>
     <p>Nous sommes ravie de vous informer que votre demande de réservation à bien été prise en compte.</p>
-    <p>Votre table vous sera réservé selon vos souhaits.</p>
+    <p>Votre table vous sera réservé* selon vos souhaits.</p>
+    <p><em>*Un retard supérieur à 15min ? Pensez à nous passer un coup de fil sans quoi votre réservation pourra se voir annulée.</em></p>
 
     <p>Pour rappel, voici les informations prises en compte: </p>
 
@@ -26,7 +27,9 @@
     <strong>Téléphone :</strong><a href="{{ reservation.tel }}">{{ reservation.tel }}</a>
     <strong>Mail :</strong><a href="mailto:{{reservation.email}}">{{reservation.email }}</a>
 
-    <p>Pour toutes modifications merci de nous contacter directement</p>
+    <p>Pour toutes modifications merci de nous contacter directement au 05.81.68.18.53.</p>
+
+    <p>Toutes l'équipe du restaurant vous souhaite une excellente journée et vous attends prochainement.</p>
 
 </body>
 </html>

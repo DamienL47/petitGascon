@@ -32,7 +32,11 @@
             {{ form_widget(form.prenom, {'label' : "Prenom", 'attr': {'class': 'champsFormContact'}}) }}
             {{ form_errors(form.prenom) }}
 
+
             {{ form_label(form.tel) }}
+            {% if form_errors(form.tel) %}
+                {{ form_help(form.tel) }}
+            {% endif %}
             {{ form_widget(form.tel, {'label' : "Tel", 'attr': {'class': 'champsFormContact'}}) }}
             {{ form_errors(form.tel) }}
 
@@ -45,8 +49,15 @@
             {{ form_errors(form.sujet) }}
 
             {{ form_label(form.message) }}
-            {{ form_widget(form.message, {'label' : "Message", 'attr': {'class': 'champsFormContact'}}) }}
+            {{ form_widget(form.message, {'label' : "Message", 'attr': {'class': 'champsFormContact placeCaptcha2'}}) }}
             {{ form_errors(form.message) }}
+
+            <div class="g-recaptcha" data-sitekey="6LfWU34iAAAAAACyJehieXSmo6p1TRtm2I46Ud1z">
+                {{form_widget(form.captcha)}}
+                {{form_errors(form.captcha)}}
+            </div>
+
+            <button type="submit" class="connect placeCaptcha">Envoyer</button>
 
             {{ form_end(form) }}
         </div>

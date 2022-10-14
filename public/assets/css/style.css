@@ -499,8 +499,14 @@ h4:hover::after {
     color: white;
 }
 
-
-
+.placeCaptcha {
+    width: 100%;
+    margin-top: 60px;
+}
+.placeCaptcha2 {
+    width: 100%;
+    margin-bottom: 20px;
+}
 /* zone contact */
 
 .contactPage {

@@ -14,6 +14,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
+use VictorPrdh\RecaptchaBundle\Form\ReCaptchaType;
 
 class Reservations1Type extends AbstractType
 {
@@ -23,7 +25,10 @@ class Reservations1Type extends AbstractType
             ->add('nom', TextType::class)
             ->add('prenom', TextType::class)
             ->add('email', EmailType::class)
-            ->add('tel', TelType::class)
+            ->add('tel', TelType::class, [
+                'help' => 'le champs doit être au format 0102030405',
+                'constraints' => new Length(['min' => 10, 'max' => 10])
+            ])
             ->add('nbPersonnes', NumberType::class, [
                 'label' => 'Nombre de personnes'
             ])
@@ -36,6 +41,7 @@ class Reservations1Type extends AbstractType
                 'required' => false,
                 'empty_data' => '',
             ])
+            ->add('captcha', ReCaptchaType::class)
             ->add('status_id', EntityType::class, [
                 'choice_value' => function (?Status $entity) {
                     return $entity ? $entity->getId() : '2';
