@@ -62,10 +62,10 @@
             {{form_widget(form.contraintes, { 'attr': {'class': 'champsFormResa placeCaptcha2'}})}}
             {{form_errors(form.contraintes)}}
 
-            <div class="g-recaptcha" data-sitekey="6LfWU34iAAAAAACyJehieXSmo6p1TRtm2I46Ud1z">
-                {{form_widget(form.captcha)}}
-                {{form_errors(form.captcha)}}
-            </div>
+{#            <div class="g-recaptcha" data-sitekey="6LfWU34iAAAAAACyJehieXSmo6p1TRtm2I46Ud1z">#}
+{#                {{form_widget(form.captcha)}}#}
+{#                {{form_errors(form.captcha)}}#}
+{#            </div>#}
 
         <button type="submit" class="connect resaBtn placeCaptcha" data-bs-target="modal">Réserver</button>
             <div class="masquer">
@@ -86,23 +86,30 @@
         <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
         <script type="text/javascript">
 
+            alert("Chers clients, pour toutes demandes de réservations de dernière minute, veuillez nous contacter par téléphone au 05.81.68.18.53, la réservation en ligne étant soumise à validation, il nous serait impossible de valider cette dernière durant un service cours. Merci de votre compréhension.");
+
+            let ouvMidi = "12:00";
+            let ouvSoir = "20:00";
+            let fermMidi = "14:30";
+            let fermSoir = "22:30";
+            let fermer = ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "15:00", "16:00", "17:00", "18:00", "19:00", "23:00"];
+
             flatpickr(".flatpickr.datetime", {
 
                 enableTime: true,
-                inline: true,
+                altInput: true,
+                altFormat: "d M Y H:i",
+                clickOpens: true,
                 minDate: "today",
-                allowInput: true,
+                _minTime: ouvMidi,
+                minTime: ouvSoir,
+                _maxTime: fermSoir,
+                maxTime: fermMidi,
                 minuteIncrement: 15,
-                minTime: "12:00",
-                maxTime: "22:30",
-                _minTime: "20:00",
-                _maxTime: "14:30",
-                dateFormat: "Y-m-d H:i",
-                altFormat: "d/m/y H:i",
                 disable : [
                     function (date) {
                         return (date.getDay() === 2);
-                    }
+                    },
                 ],
                 locale : "fr",
             });

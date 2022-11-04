@@ -33,7 +33,7 @@ class MenuType extends AbstractType
                 'class' => Met::class,
                 'label' => 'Plat',
                 'choice_label' => 'titre',
-                'multiple' => false,
+                'multiple' => true,
                 'required' => false,
                 'mapped'=> false,
             ])
