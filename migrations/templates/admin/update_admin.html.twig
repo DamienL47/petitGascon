@@ -1,0 +1,24 @@
+{% extends 'admin/home.html.twig'%}
+
+{% block main %}
+<div class="register content">
+    <h1 class="text">Modifier un Admin</h1>
+    <img class="logoIcone" src="{{ asset('assets/img/logo_petit_gascon.png') }}" alt="Logo Restaurant">
+<div class="blocForm">
+    {{ form_start(form, {'attr': {'class': 'champsForm'}}) }}
+
+    {{ form_label(form.prenom) }}
+    {{ form_widget(form.prenom, {'label' : "Prenom"}) }}
+    {{ form_errors(form.prenom) }}
+
+    {{ form_label(form.email) }}
+    {{ form_widget(form.email, {'label' : "Email"}) }}
+    {{ form_errors(form.email) }}
+
+    {{ form_widget(form.password) }}
+    {{ form_errors(form.password) }}
+
+    <button type="submit" class="connect">Enregistrer</button>
+    {{ form_end(form) }}
+
+{% endblock %}

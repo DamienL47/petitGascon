@@ -1,0 +1,51 @@
+{% extends 'admin/home.html.twig' %}
+
+{% block title %}Nouvelle Reservation{% endblock %}
+
+{% block main %}
+    <div class="content">
+        <h1>Créer une réservation</h1>
+        <div class="blocFormResaBack">
+            {{ form_start(form) }}
+
+            {{ form_label(form.nom) }}
+            {{ form_widget(form.nom, {'attr' : {'class' : 'champsFormResaBack'} }) }}
+            {{ form_errors(form.nom)}}
+
+            {{ form_label(form.prenom) }}
+            {{ form_widget(form.prenom, {'attr' : {'class' : 'champsFormResaBack'} }) }}
+            {{ form_errors(form.prenom)}}
+
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email, {'attr' : {'class' : 'champsFormResaBack'} }) }}
+            {{ form_errors(form.email)}}
+
+            {{ form_label(form.tel) }}
+            {{ form_widget(form.tel, {'attr' : {'class' : 'champsFormResaBack'} }) }}
+            {{ form_errors(form.tel)}}
+
+            {{ form_label(form.nbPersonnes) }}
+            {{ form_widget(form.nbPersonnes, {'attr' : {'class' : 'champsFormResaBack'} }) }}
+            {{ form_errors(form.nbPersonnes)}}
+
+            {{ form_label(form.dateReservation) }}
+            {{ form_widget(form.dateReservation, {'attr' : {'class' : 'champsFormResaBack'} }) }}
+            {{ form_errors(form.dateReservation)}}
+
+            {{ form_label(form.contraintes) }}
+            {{ form_widget(form.contraintes, {'attr' : {'class' : 'champsFormResaBack'} }) }}
+            {{ form_errors(form.contraintes)}}
+
+            {{ form_label(form.status_id) }}
+            {{ form_widget(form.status_id, {'attr' : {'class' : 'champsFormResaBack'} }) }}
+            {{ form_errors(form.status_id)}}
+
+            <button type="submit" class="connect">
+                Valider la réservation
+            </button>
+            <a class="connect" href="{{ path('app_admin_reservation_edit_index') }}">Retour à la liste</a>
+            {{ form_end(form) }}
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,5 +1,5 @@
 framework:
     mailer:
-        dsn: '%env(LOCAL_MAIL)%'
+        dsn: '%env(MAILER_DSN)%'
 
 

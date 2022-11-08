@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Réservation en ligne {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_green.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+{% endblock %}
+
+
+{% block main %}
+
+{% include 'modal_message_flash/_modal.html.twig' %}
+
+    <div class="resa">
+        <h1>Réservation en ligne</h1>
+        <p>Veuillez renseigner tous les champs pour la bonne prise en compte de votre réservation.</p>
+    </div>
+    <section class="container_resa">
+
+
+        {{form_start(form)}}
+        <div class="champsFormResaGlobal">
+            <div>
+                <img class="imgResa" src="{{asset('assets/img/img_terrasseNuit.png')}}" alt="Terrasse restaurant">
+                <p class="text_front">Un moment de détente vous attends ...</p>
+            </div>
+            <div class="inputChamp">
+            {{form_label(form.dateReservation)}}
+            {{form_widget(form.dateReservation)}}
+            {{form_errors(form.dateReservation)}}
+            </div>
+
+        <div class="blocFormResa">
+            {{form_label(form.nbPersonnes)}}
+            {{form_widget(form.nbPersonnes, {'attr': {'class': 'champsFormResa'}})}}
+            {{form_errors(form.nbPersonnes)}}
+
+            {{form_label(form.nom)}}
+            {{form_widget(form.nom, {'attr': {'class': 'champsFormResa'}})}}
+            {{form_errors(form.nom)}}
+
+            {{form_label(form.prenom)}}
+            {{form_widget(form.prenom, {'attr': {'class': 'champsFormResa'}})}}
+            {{form_errors(form.prenom)}}
+
+            {{form_label(form.email)}}
+            {{form_widget(form.email, {'attr': {'class': 'champsFormResa'}})}}
+            {{form_errors(form.email)}}
+
+            {{ form_label(form.tel) }}
+            {% if form_errors(form.tel) %}
+                {{ form_help(form.tel) }}
+            {% endif %}
+            {{ form_widget(form.tel, {'attr': {'class': 'champsFormResa'}}) }}
+            {{ form_errors(form.tel) }}
+            
+            {{form_label(form.contraintes)}}
+            {{form_widget(form.contraintes, { 'attr': {'class': 'champsFormResa placeCaptcha2'}})}}
+            {{form_errors(form.contraintes)}}
+
+{#            <div class="g-recaptcha" data-sitekey="6LfWU34iAAAAAACyJehieXSmo6p1TRtm2I46Ud1z">#}
+{#                {{form_widget(form.captcha)}}#}
+{#                {{form_errors(form.captcha)}}#}
+{#            </div>#}
+
+        <button type="submit" class="connect resaBtn placeCaptcha" data-bs-target="modal">Réserver</button>
+            <div class="masquer">
+                {{form_label(form.status_id)}}
+                {{form_widget(form.status_id)}}
+                {{form_errors(form.status_id)}}
+            </div>
+        </div>
+        </div>
+
+        {{form_end(form)}}
+    </section>
+    {%block javascripts %}
+        {{ parent() }}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+        <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
+        <script type="text/javascript">
+
+            alert("Chers clients, pour toutes demandes de réservations de dernière minute, veuillez nous contacter par téléphone au 05.81.68.18.53, la réservation en ligne étant soumise à validation, il nous serait impossible de valider cette dernière durant un service cours. Merci de votre compréhension.");
+
+            let ouvMidi = "12:00";
+            let ouvSoir = "20:00";
+            let fermMidi = "14:30";
+            let fermSoir = "22:30";
+            let fermer = ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "15:00", "16:00", "17:00", "18:00", "19:00", "23:00"];
+
+            flatpickr(".flatpickr.datetime", {
+
+                enableTime: true,
+                altInput: true,
+                altFormat: "d M Y H:i",
+                clickOpens: true,
+                minDate: "today",
+                _minTime: ouvMidi,
+                minTime: ouvSoir,
+                _maxTime: fermSoir,
+                maxTime: fermMidi,
+                minuteIncrement: 15,
+                disable : [
+                    function (date) {
+                        return (date.getDay() === 2);
+                    },
+                ],
+                locale : "fr",
+            });
+        </script>
+    {% endblock %}
+
+{% endblock %}

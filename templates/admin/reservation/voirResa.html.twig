@@ -13,10 +13,10 @@
             <strong>Téléphone :</strong><a href="{{ reservation.tel }}">{{ reservation.tel }}</a>
             <strong>Mail :</strong><a href="mailto:{{reservation.email}}">{{reservation.email }}</a>
             <div class="statusResa">
-                <a class="connect" href="{{ path('reservation_valider' , { id: reservation.id }) }}">Valider la réservation</a>
-                <a class="connect orange" href="{{ path('reservation_attente' , { id: reservation.id }) }}">Mettre en attente la réservation</a>
-                <a class="connect red" href="{{ path('reservation_refus' , { id: reservation.id }) }}">Refuser la réservation</a>
+                <a class="connect" href="{{ path('app_admin_reservation_edit_edit' , { id: reservation.id }) }}">Valider la réservation</a>
+                <a class="connect orange" href="{{ path('app_admin_reservation_edit_edit' , { id: reservation.id }) }}">Mettre en attente la réservation</a>
+                <a class="connect red" href="{{ path('app_admin_reservation_edit_edit' , { id: reservation.id }) }}">Refuser la réservation</a>
         </div>
     </div>
-{% endblock %}
 
+{% endblock %}

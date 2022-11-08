@@ -2,9 +2,6 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Demande de contact client</title>
     <style>
         img {
@@ -25,19 +22,17 @@
         }
     </style>
 </head>
-<header>
-    <img width="50px" src="{{ asset('assets/img/logo_petit_gascon.png') }}" alt="Logo Restaurant Le Moulin du Petit Gascon">
-    <h1>Nouvelle demande de contact Client</h1>
-</header>
 <body>
+<img width="50px" src="{{ asset('assets/img/logo_petit_gascon.png') }}" alt="Logo Restaurant Le Moulin du Petit Gascon">
+<h1>Nouvelle demande de contact Client</h1>
     <div class="boxContentMail">
         <div class="contentMail">
-            <h2>{{ nom }}</h2>
-            <h3>{{ prenom }}</h3>
-            <a href="{{ tel }}">{{ tel }}</a>
-            <a href="{{ email }}">{{ email }}</a>
-            <p>{{ sujet }}</p>
-            <p>{{ message }}</p>
+            <h2>{{ contact.nom }}</h2>
+            <h3>{{ contact.prenom }}</h3>
+            <a href="{{ contact.tel }}">{{ contact.tel }}</a>
+            <a href="{{ contact.email }}">{{ contact.email }}</a>
+            <p>{{ contact.sujet }}</p>
+            <p>{{ contact.message }}</p>
         </div>
     </div>
 <p>Attention, ce mail est généré automatiquement, merci de ne pas y répondre.</p>

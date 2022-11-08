@@ -1,0 +1,33 @@
+
+{% extends 'admin/home.html.twig' %}
+
+{% block title %}Enregistrer un nouvel Admin{% endblock %}
+
+{% block main %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+        <div class="register content">
+            <h1 class="text">Enregistrer un nouvel Admin</h1>
+            <img class="logoIcone" src="{{ asset('assets/img/logo_petit_gascon.png') }}" alt="Logo Restaurant">
+            <div class="blocForm">
+                {{ form_start(registrationForm, {'attr': {'class': 'champsForm'}}) }}
+
+                {{ form_label(registrationForm.prenom) }}
+                {{ form_widget(registrationForm.prenom, {'label' : "Prenom"}) }}
+                {{ form_errors(registrationForm.prenom) }}
+
+                {{ form_label(registrationForm.email) }}
+                {{ form_widget(registrationForm.email, {'label' : "Email"}) }}
+                {{ form_errors(registrationForm.email) }}
+
+
+                {{ form_widget(registrationForm.password, {'label' : "Mot de passe"}) }}
+                {{ form_errors(registrationForm.password) }}
+
+                <button type="submit" class="connect">Enregistrer</button>
+                {{ form_end(registrationForm) }}
+
+            </div>
+        </div>
+{% endblock %}

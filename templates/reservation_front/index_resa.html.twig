@@ -62,10 +62,10 @@
             {{form_widget(form.contraintes, { 'attr': {'class': 'champsFormResa placeCaptcha2'}})}}
             {{form_errors(form.contraintes)}}
 
-{#            <div class="g-recaptcha" data-sitekey="6LfWU34iAAAAAACyJehieXSmo6p1TRtm2I46Ud1z">#}
-{#                {{form_widget(form.captcha)}}#}
-{#                {{form_errors(form.captcha)}}#}
-{#            </div>#}
+            <div class="g-recaptcha" data-sitekey="6LfWU34iAAAAAACyJehieXSmo6p1TRtm2I46Ud1z">
+                {{form_widget(form.captcha)}}
+                {{form_errors(form.captcha)}}
+            </div>
 
         <button type="submit" class="connect resaBtn placeCaptcha" data-bs-target="modal">Réserver</button>
             <div class="masquer">

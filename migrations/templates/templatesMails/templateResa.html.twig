@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Nouvelle réservation en ligne !</title>
+</head>
+<body>
+    <header>
+        <img src="{{asset('assets/img/logo_petit_gascon.png')}}" alt="logo resto">
+    </header>
+    <main>
+        <h1>Vous avez reçu une nouvelle réservation en ligne !</h1>
+
+        <h2>Un client vous adresse une demande de réservation</h2>
+
+        <p>Voici les informations à prendre en compte: </p>
+
+        <p><strong>Nom : </strong> {{ reservation.nom }}</p>
+        <p><strong>Prénom :</strong> {{ reservation.prenom }}</p>
+        <p><strong>Date de réservation : </strong>{{ reservation.dateReservation ? reservation.dateReservation|date('Y-m-d H:i') : '' }}</p>
+        <p><strong>Nombre de personnes :</strong>{{ reservation.nbPersonnes }}</p>
+        <p><strong>Demande spécifique :</strong>{{ reservation.contraintes }}</p>
+        <strong>Téléphone :</strong><a href="{{ reservation.tel }}">{{ reservation.tel }}</a>
+        <strong>Mail :</strong><a href="mailto:{{reservation.email}}">{{ reservation.email }}</a>
+
+        <p>Pour valider directement la réservation et générer un mail de confirmation veuillez suivre le lien ci-dessous</p>
+
+        <a style="color: limegreen" href="{{path('admin_dashboard')}}">Connexion au tableau de bord</a>
+
+    </main>
+
+</body>
+</html>

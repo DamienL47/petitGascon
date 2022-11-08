@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Accueil {% endblock %}
+
+{% block main %}
+        <h2 class="text text_front size">Bar Restaurant</h2>
+    <div class="titre_accueil">
+        <h1 class="text surligne">Le Moulin du Petit Gascon</h1>
+        <img  class="logoFaitMaison" src="{{ asset('assets/img/logo_fait_maison.png') }}" alt="Logo fait maison">
+    </div>
+    <section class="slider">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{ asset('assets/img/img_terrasse.png') }}" class="d-block w-100" alt="Terrasse du restaurant">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('assets/img/img_gambas.png') }}" class="d-block w-100" alt="Gambas géante">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('assets/img/img_rillette.png') }}" class="d-block w-100" alt="rillette maison">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('assets/img/img_tatin.png') }}" class="d-block w-100" alt="tatin coing foie gras">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('assets/img/img_cepes.png') }}" class="d-block w-100" alt="cèpes frais">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('assets/img/img_courge.png') }}" class="d-block w-100" alt="courges du jardin">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+    <div class="valeurs">
+        <h2 class="text text_front size"> <span class="line_value">Nos Valeurs</span></h2>
+    </div>
+    <section class="container">
+        <div class="bloc_container">
+            <div class="bloc_home">
+                <h3 class="text text_front size"><span class="line_1">Produit Frais</span> </h3>
+                <img class="content_article" src="{{ asset('assets/img/img_courge.png') }}" alt="Courge du jardin">
+                <p class="text_box">Le chef vous propose une cuisine traditionnelle raffinée, élaborée avec des produits frais, de saison dans un décor coloré, au bord du gers.
+                En été, une térrasse sur l'écluse vous accueille dans un un décors de nature au son de l'eau. Un cadre calme et apaisant pour bien manger.</p>
+            </div>
+            <div class="bloc_home">
+                <h3 class="text text_front size"><span class="line_2">Fait Maison</span> </h3>
+                <img class="content_article" src="{{ asset('assets/img/img_tatin.png') }}" alt="Tarte tatin salée">
+                <p class="text_box">La mention "Fait Maison" est un engagement, ce n'est pas un simple logo que nous mettons en avant mais un savoir faire et notre engagement dans un service de qualité.
+                </p>
+            </div>
+            <div class="bloc_home">
+                <h3 class="text text_front size"><span class="line_3">Qualité/Prix</span> </h3>
+                <img class="content_article" src="{{ asset('assets/img/jardin.png') }}" alt="image potager">
+                <p class="text_box">C'est en cultivant la plus grande partie de nos légumes que nous pouvons appliquer un tarif abordable et garantir la qualité de nos plats en conservant toutes les saveurs de la nature.<br>
+                    <strong>Nos légumes sont cultivés sans pesticide !</strong> </p>
+            </div>
+        </div>
+
+    </section>
+{% endblock %}
+
+
+
+

@@ -1,0 +1,1238 @@
+@font-face {
+    font-family: "Tangerine-regular";
+    src: url("../font/Tangerine/Tangerine-Regular.ttf");
+}
+@font-face {
+    font-family: "Tangerine-bold";
+    src: url("../font/Tangerine/Tangerine-bold.ttf");
+}
+
+@keyframes line {
+    from {
+        width: 0;
+    }
+    to {
+        width: 12%;
+    }
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, white, silver);
+}
+
+/*Zone connexion Admin */
+
+.text {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.logoIcone {
+    width: 130px;
+    height: 170px;
+    margin-left: 40%;
+}
+
+.blocForm {
+    width: 100%;
+    height: max-content;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: whitesmoke;
+    box-shadow: 6px 6px 10px black ;
+    margin: auto;
+}
+.champsForm{
+    display: flex;
+    flex-direction: column;
+    padding: 10%;
+}
+
+.connect {
+    width: max-content;
+    text-decoration: none;
+    font-size: 16px;
+    margin: auto auto 20px 20px;
+    font-weight: bold;
+    padding: 3%;
+    border-radius: 20px;
+    border-color: silver;
+    background-color: limegreen;
+    color: white;
+}
+.connect:hover{
+    background-color: green;
+    color: white;
+}
+.lu {
+    margin: 0;
+    width: 150px;
+}
+
+.register {
+    width: 50%;
+}
+.champsForm2 {
+    display: flex;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* Zone dashboard */
+
+.message_success {
+    width: 60%;
+    border: 1px solid limegreen;
+    background-color: whitesmoke;
+    border-radius: 20px;
+    box-shadow: 3px 3px 10px Black;
+    padding: 10%;
+    font-size: 30px;
+    color: green;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.bandeau {
+    width: 100%;
+    height: 100px;
+    background-color: whitesmoke;
+    border-bottom: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    z-index: 10;
+}
+
+.bouton-tableau{
+    display: flex;
+    flex-flow: row wrap;
+    width: max-content;
+}
+
+.btn-danger {
+    background-color: black;
+}
+.btn-danger:hover{
+    background-color: silver;
+}
+
+.navBarAdmin{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 100vh;
+    border-right: 1px solid black;
+    background-color: whitesmoke;
+}
+
+.dashboard {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 100px;
+}
+
+.content {
+    display: flex;
+    flex-flow: row wrap;
+    flex-direction: column;
+    margin-left: 21%;
+    position: relative;
+    top: 100px;
+}
+
+.onglet {
+    width: 100%;
+    text-decoration: none;
+    font-weight: bold;
+    color: cornflowerblue;
+    padding: 3%;
+}
+.onglet:hover{
+    border: 1px solid silver;
+    background-color: ghostwhite;
+}
+
+.blocAdmin {
+    display: inline-flex;
+    flex-flow: row wrap;
+    width: max-content;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 2%;
+    background-color: ghostwhite;
+    margin: 2%;
+}
+
+.table {
+    width: 79vw;
+}
+
+.tableau {
+    width: 100%;
+    margin-top: 5px;
+    border: 2px solid black;
+}
+
+.listContact {
+    width: max-content;
+}
+
+.checkbox {
+    width: 30px;
+    height: 30px;
+}
+
+.mini {
+    width: 100px;
+}
+
+.statusResa {
+    padding-top: 40px;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.red {
+    background-color: red;
+    margin-top: 20px;
+}
+
+.blocFormResaBack {
+    width: 400px;
+    height: max-content;
+}
+.champsFormResaBack {
+    text-align: center;
+    width: 100%;
+}
+
+/* zone front */
+
+.ifBurger > a > .logoIconeMenu {
+    display: none;
+}
+.nav-toggler {
+    display: none;
+}
+
+.navBar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 10%;
+    padding-bottom: 5%;
+    height: 200px;
+}
+
+.btn_menu {
+    width: 20vw;
+    height: 3em;
+    border: 1px solid limegreen;
+    background-color: limegreen;
+    color: black;
+    overflow: hidden;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 5px 5px 10px black;
+    margin-right: 5vw;
+    margin-left: 5vw;
+}
+
+.btn_menu:hover {
+    border: 1px solid silver;
+    background-color: green;
+    color: white;
+}
+
+.accueil {
+    font-family: Tangerine-regular, "Comic Sans MS", sans-serif;
+    font-size: 25px;
+    text-align: center;
+    padding-top: 18px;
+    font-weight: bolder;
+}
+
+.logoIconeMenu {
+    width: 20vw;
+    height: auto;
+}
+
+.titre_accueil {
+    position: relative;
+}
+
+.surligne {
+    font-family: Tangerine-regular, Arial, sans-serif;
+    font-size: 2.5em;
+    background-color: black;
+    border-radius: 15px;
+    color: white;
+    margin: 20px auto 30px auto;
+    width: 40vw;
+    padding: 10px 15px;
+}
+
+.titre_accueil {
+    position: relative;
+}
+
+.logoFaitMaison {
+    position: absolute;
+    width: 6%;
+    height: auto;
+    top: -18px;
+    right: 32%;
+    border: 1px solid limegreen;
+    border-radius: 10px 10px 0 0;
+    padding: 10px;
+    background-color: limegreen;
+    z-index: 1;
+}
+
+.slider {
+    width: 80%;
+    margin: auto;
+}
+.carousel-inner {
+    border-radius: 50px;
+    height: 45vh;
+}
+
+.carousel img {
+    position: absolute;
+    top: -100px;
+    object-fit: cover;
+}
+
+.text_front {
+    font-family: Tangerine-regular, Arial, sans-serif;
+    font-size: 25px;
+}
+.size {
+    font-size: 4em;
+}
+
+.valeurs {
+    position: relative;
+}
+
+span.line_value::after {
+    content: "";
+    background-color: limegreen;
+    width: 16%;
+    height: 20%;
+    margin-left: 50%;
+    display: block;
+
+    position: absolute;
+    bottom: 18%;
+    z-index: -1;
+    transform: translateX(-50%);
+}
+
+span.line_value:hover::after {
+    animation: line 1s 0s;
+    width: 16%;
+}
+
+.bloc_container {
+    display: flex;
+    width: 100vw;
+    justify-content: space-around;
+    flex-flow: row wrap;
+    margin-bottom: 100px;
+}
+.container {
+    margin: 0;
+}
+
+.bloc_home {
+    width: 30vw;
+    height: content-box;
+    border: 1px solid silver;
+    border-radius: 30px;
+    margin-top: 30px;
+    background-color: whitesmoke;
+    z-index: 0;
+    box-shadow: 2px 0 20px black;
+    position: relative;
+}
+
+span.line_1::after {
+    content: "";
+    background-color: limegreen;
+    width: 60%;
+    height: 3%;
+    display: block;
+
+    position: absolute;
+    top: 12.5%;
+    left: 50%;
+    z-index: -1;
+    transform: translateX(-50%);
+}
+
+span.line_1:hover::after {
+    animation: line 1s 0s;
+    width: 60%;
+}
+
+span.line_2::after {
+    content: "";
+    background-color: limegreen;
+    width: 60%;
+    height: 3%;
+    display: block;
+
+    position: absolute;
+    top: 12.5%;
+    left: 50%;
+    z-index: -1;
+    transform: translateX(-50%);
+}
+
+span.line_2:hover::after {
+    animation: line 1s 0s;
+    width: 60%;
+}
+span.line_3::after {
+    content: "";
+    background-color: limegreen;
+    width: 60%;
+    height: 3%;
+    display: block;
+
+    position: absolute;
+    top: 12.5%;
+    left: 50%;
+    z-index: -1;
+    transform: translateX(-50%);
+}
+
+span.line_3:hover::after {
+    animation: line 1s 0s;
+    width: 60%;
+}
+
+.content_article {
+    width: 100%;
+    height: 180px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    object-fit: cover;
+    box-shadow: 2px 0 20px black;
+}
+
+.text_box {
+    font-family: "Comic Sans MS", arial, sans-serif;
+    font-size: 16px;
+    text-align: justify;
+    padding: 5%;
+}
+
+strong {
+    color: limegreen;
+    font-size: 20px;
+}
+
+
+/* zone footer */
+
+.content_footer {
+    width: 100vw;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    background-color: black;
+}
+
+.box_footer {
+    margin: 30px 20px;
+}
+.box_footer > p > a:hover {
+    color: limegreen;
+}
+
+.text_footer {
+    font-family: "Comic Sans MS", arial, sans-serif;
+    font-size: 12px;
+    color: white;
+    text-decoration: none;
+}
+h4::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 8%;
+    height: 3px;
+    background-color: limegreen;
+    transform: scale(0);
+    transition: transform 0.3s ease-in-out;
+
+}
+h4:hover::after {
+    transform: scale(1);
+}
+
+.text_footer2 {
+    font-family: "Comic Sans MS", arial, sans-serif;
+    font-size: 12px;
+    color: white;
+}
+
+.placeCaptcha {
+    width: 100%;
+    margin-top: 60px;
+}
+.placeCaptcha2 {
+    width: 100%;
+    margin-bottom: 20px;
+}
+/* zone contact */
+
+.contactPage {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: wrap-reverse;
+    align-items: center;
+}
+
+.maps {
+    width: 30%;
+}
+
+.blocContact {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+.tel {
+    text-decoration: none;
+    color: limegreen;
+}
+.tel:hover {
+    color: green;
+}
+
+.blocFormContact {
+    width: 30%;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.champsFormContact {
+    border-radius: 20px;
+    padding: 5px;
+    background-color: silver;
+}
+
+/* Zone Menus */
+
+.container_menu {
+    display: flex;
+    width: 100%;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.menu {
+    width: 45%;
+    border: 1px solid black;
+    text-align: center;
+    font-family: Tangerine-bold, Arial, sans-serif;
+    background-color: white;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.menu > h3 {
+    color: limegreen;
+}
+
+.image_menu {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* BLOCK RESERVATION EN LIGNE */
+
+.resa {
+    width: 100vw;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.resa > h1 {
+    font-family: Tangerine-bold, Verdana, sans-serif;
+    font-size: 60px;
+}
+
+.resa > p {
+    font-family: Tangerine-regular, Verdana, sans-serif;
+    font-size: 30px;
+}
+
+.container_resa {
+    width: 100vw;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.champsFormResaGlobal {
+    width: 100vw;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.blocFormResa {
+    width:30vw;
+    margin-left: 30px;
+    padding: 20px;
+    background-color: whitesmoke;
+    border: 2px solid Black;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.inputChamp {
+    height: 20px;
+    width: 17vw;
+    display: flex;
+    flex-direction: column;
+}
+.imgResa {
+    width: 30vw;
+    margin-top: 60px;
+    border: 2px solid limegreen;
+    box-shadow: 3px 3px 10px limegreen;
+    border-radius: 20px;
+}
+
+.champsFormResa {
+    border-radius: 20px;
+    padding: 5px;
+    background-color: silver;
+}
+
+.resaBtn {
+    margin: 20px auto;
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+}
+.msgSuccess{
+    width: 100vw;
+    color: green;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 20px;
+    background-color: ghostwhite
+}
+
+.msgErrors{
+    width: 100vw;
+    color: red;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 20px;
+    background-color: ghostwhite
+}
+
+.masquer {
+    visibility: hidden;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+    .nav-toggler {
+        display: none;
+    }
+    .logoIconeMenu {
+        width: 13vw;
+    }
+    .btn_menu {
+        width: 27vw;
+        height: 65px;
+        border: 1px solid limegreen;
+        background-color: limegreen;
+        color: black;
+        text-decoration: none;
+        border-radius: 50px;
+        box-shadow: 5px 5px 10px black;
+        box-sizing: border-box;
+    }
+    .accueil {
+        font-size: 23px;
+        padding-top: 13px;
+    }
+
+    .surligne {
+        font-size: 2.5em;
+        width: 60vw;
+    }
+
+    .logoFaitMaison {
+        top: -13px;
+        width: 8%;
+        right: 23%;
+    }
+    .carousel-inner {
+        border-radius: 30px;
+        height: 39vh;
+    }
+    span.line_value::after {
+        width: 25%;
+        height: 20%;
+        margin-left: 50%;
+        display: block;
+
+        position: absolute;
+        bottom: 18%;
+        z-index: -1;
+        transform: translateX(-50%);
+    }
+
+    span.line_value:hover::after {
+        animation: line 1s 0s;
+        width: 25%;
+    }
+    span.line_1::after {
+        width: 80%;
+        position: absolute;
+        left: 50%;
+        top: 10%;
+        z-index: -1;
+        transform: translate(-50%, 50%);
+    }
+
+    span.line_1:hover::after {
+        animation: line 1s 0s;
+        width: 80%;
+    }
+
+    span.line_2::after {
+        width: 80%;
+        position: absolute;
+        left: 50%;
+        top: 10%;
+        z-index: -1;
+        transform: translate(-50%, 50%);
+    }
+
+    span.line_2:hover::after {
+        animation: line 1s 0s;
+        width: 80%;
+    }
+
+    span.line_3::after {
+        width: 80%;
+        position: absolute;
+        left: 50%;
+        top: 10%;
+        z-index: -1;
+        transform: translate(-50%, 50%);
+    }
+
+    span.line_3:hover::after {
+        animation: line 1s 0s;
+        width: 80%;
+    }
+
+    .container_resa {
+        justify-content: center;
+    }
+    .imgResa {
+        width: 70vw;
+    }
+    .inputChamp {
+        height: 20px;
+        width: 35vw;
+        display: flex;
+        flex-direction: column;
+    }
+    .blocFormResa {
+        width: 50vw;
+    }
+    .contactPage{
+        margin: auto;
+    }
+
+    .maps {
+        width: 30%;
+        text-align: center;
+    }
+
+    .blocContact {
+        width: 30%;
+        text-align: center;
+    }
+
+    .blocFormContact{
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 967px) and (max-width: 1023px) {
+    .nav-toggler {
+        display: none;
+    }
+
+    .btn_menu {
+        width: 20vw;
+        height: 90px;
+        border: 1px solid limegreen;
+        background-color: limegreen;
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        box-shadow: 5px 5px 10px black;
+        margin-right: 5vw;
+        margin-left: 5vw;
+    }
+
+    .accueil {
+        font-size: x-large;
+        padding-top: 25px;
+    }
+
+    .surligne {
+        font-size: 3.1em;
+        width: 60vw;
+    }
+
+    .logoFaitMaison {
+        top: -21px;
+        width: 7%;
+        right: 25%;
+    }
+    .carousel-inner {
+        border-radius: 30px;
+        height: 65vh;
+    }
+
+}
+
+
+@media screen and (min-width: 768px) and (max-width: 966px) {
+
+    .nav-toggler {
+        display: none;
+    }
+
+    .btn_menu {
+        width: 20vh;
+        height: 50px;
+        border: 1px solid limegreen;
+        background-color: limegreen;
+        color: black;
+        text-decoration: none;
+        border-radius: 50px;
+        box-shadow: 5px 5px 10px black;
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .accueil {
+        font-size: large;
+        padding-top: 10px;
+    }
+    .surligne {
+        font-size: 2.5em;
+        width: 80vw;
+    }
+
+    .logoFaitMaison {
+        top: -16px;
+        width: 11%;
+        right: 15%;
+    }
+    .carousel-inner {
+        border-radius: 30px;
+        height:25vh;
+    }
+
+    span.line_value::after {
+        width: 32%;
+        position: absolute;
+        bottom: 17%;
+        z-index: -1;
+        transform: translateX(-50%);
+    }
+
+    span.line_value:hover::after {
+        animation: line 1s 0s;
+        width: 32%;
+    }
+
+    .bloc_home {
+        width: 80%;
+        margin-top: 10px;
+    }
+
+    span.line_1::after {
+        width: 40%;
+        position: absolute;
+        left: 50%;
+        top: 11%;
+        z-index: -1;
+        transform: translate(-50%, 50%);
+    }
+
+    span.line_1:hover::after {
+        animation: line 1s 0s;
+        width: 40%;
+    }
+
+    span.line_2::after {
+        width: 40%;
+        position: absolute;
+        left: 50%;
+        top: 12%;
+        z-index: -1;
+        transform: translate(-50%, 50%);
+    }
+
+    span.line_2:hover::after {
+        animation: line 1s 0s;
+        width: 40%;
+    }
+
+    span.line_3::after {
+        width: 40%;
+        position: absolute;
+        left: 50%;
+        top: 12%;
+        z-index: -1;
+        transform: translate(-50%, 50%);
+    }
+
+    span.line_3:hover::after {
+        animation: line 1s 0s;
+        width: 40%;
+    }
+
+    .menu {
+        width: 100vh;
+    }
+
+    .container_resa {
+        justify-content: center;
+    }
+    .imgResa {
+        width: 80vw;
+    }
+    .inputChamp {
+        height: 20px;
+        width: 50vw;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .blocFormResa {
+        width: 80vw;
+        margin-top: 390px;
+    }
+    .contactPage{
+        margin: auto;
+    }
+
+    .maps {
+        width: 80%;
+        text-align: center;
+    }
+
+    .blocContact {
+        width: 80%;
+        text-align: center;
+    }
+
+    .blocFormContact{
+        width: 80%;
+    }
+
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+
+    /* Menu Burger */
+    .nav-toggler {
+        position: absolute;
+        z-index: 10;
+        top: 40px;
+        right: 30px;
+        width: 50px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: transparent;
+    }
+
+    .line {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 3px;
+        background: black;
+        transition: transform 0.3s ease-in-out, opacity 0.1s ease-in-out;
+    }
+
+    .l1 {
+        transform: translateY(-10px);
+    }
+    .l3 {
+        transform: translateY(10px);
+    }
+
+    .nav-toggler.active .l1 {
+        transform: translateY(0px) rotate(135deg);
+    }
+    .nav-toggler.active .l2 {
+        opacity: 0;
+    }
+    .nav-toggler.active .l3 {
+        transform: translateY(0px) rotate(-135deg);
+    }
+
+    .ifBurger > a > .logoIconeMenu {
+        width: 30vw;
+        height: auto;
+        display: inline;
+        position: relative;
+        top: 85px;
+        Left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+    }
+
+    nav {
+        position: fixed;
+        width: 100vw;
+        min-height: 60vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: whitesmoke;
+        border-bottom: 1px solid black;
+        transform: translateY(-120%);
+        transition: transform 0.3s cubic-bezier(0.73, 0.11, 0.67, 0.84);
+        z-index: 10;
+    }
+
+    nav.active {
+        transform: translate(0);
+    }
+    .btn_menu {
+        color: black;
+        line-height: 5px;
+        display: block;
+        text-decoration: none;
+        border: 0;
+        padding: 0;
+        border-radius: 0;
+        box-shadow: none;
+        background-color: whitesmoke;
+    }
+    .btn_menu:hover {
+        color: limegreen;
+        background-color: whitesmoke;
+    }
+    .accueil {
+        font-size: 2em;
+        width: 100vw;
+        padding-top: 30px;
+    }
+    .logoIconeMenu {
+        display: none;
+    }
+    .burgerDisable {
+        display: none;
+    }
+
+    .surligne {
+        font-size: 23px;
+        width: 80vw;
+    }
+
+    .logoFaitMaison {
+        top: -5px;
+        width: 13%;
+        right: 13%;
+    }
+
+
+    .carousel-inner {
+        width: 80vw;
+        height: 23vh;
+        border-radius: 20px;
+    }
+
+    .carousel img {
+        position: absolute;
+        top: -1px;
+        object-fit: cover;
+    }
+
+    span.line_value::after {
+        width: 60%;
+        position: absolute;
+        bottom: 16%;
+        z-index: -1;
+        transform: translateX(-50%);
+    }
+
+    span.line_value:hover::after {
+        animation: line 1s 0s;
+        width: 60%;
+    }
+
+    .bloc_home {
+        width: 90vw;
+        margin-top: 10px;
+        margin-right: 20px;
+    }
+
+    span.line_1::after {
+        width: 65%;
+        position: absolute;
+        left: 50%;
+        top: 10%;
+        z-index: -1;
+        transform: translate(-50%, 50%);
+    }
+
+    span.line_1:hover::after {
+        animation: line 1s 0s;
+        width: 65%;
+    }
+
+    span.line_2::after {
+        width: 65%;
+        position: absolute;
+        left: 50%;
+        top: 12%;
+        z-index: -1;
+        transform: translate(-50%, 50%);
+    }
+
+    span.line_2:hover::after {
+        animation: line 1s 0s;
+        width: 65%;
+    }
+
+    span.line_3::after {
+        width: 65%;
+        position: absolute;
+        left: 50%;
+        top: 11%;
+        z-index: -1;
+        transform: translate(-50%, 50%);
+    }
+
+    span.line_3:hover::after {
+        animation: line 1s 0s;
+        width: 65%;
+    }
+
+    .menu {
+        width: 90%;
+    }
+
+    .container_resa {
+        justify-content: center;
+    }
+    .imgResa {
+        width: 80vw;
+    }
+    .inputChamp {
+        height: 20px;
+        width: 50vw;
+        display: flex;
+        flex-direction: column;
+        margin-right: 100px;
+    }
+
+    .blocFormResa {
+        width: 80vw;
+        margin-top: 390px;
+    }
+    .contactPage{
+        margin: auto;
+    }
+
+    .maps {
+        width: 80vw;
+        text-align: center;
+    }
+
+    iframe {
+        width: 80vw;
+    }
+
+    .blocContact {
+        width: 80%;
+        text-align: center;
+    }
+
+    .blocFormContact{
+        width: 90vw;
+    }
+
+}
+
+@media screen and (max-width: 320px) {
+    .surligne {
+        font-size: 1.3em;
+        text-align: left;
+        width: 80vw;
+    }
+
+    .logoFaitMaison {
+        top: -6px;
+        width: 16%;
+        right: 15%;
+    }
+    .inputChamp {
+        height: 20px;
+        width: 50vw;
+        display: flex;
+        flex-direction: column;
+        margin-right: 150px;
+    }
+    .blocFormResa {
+        width: 90vw;
+        margin-top: 390px;
+        margin-right: 25px;
+    }
+}
+
+
+
+
+

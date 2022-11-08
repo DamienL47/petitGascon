@@ -1,0 +1,53 @@
+{% extends 'admin/home.html.twig' %}
+
+{% block title %}Reservations{% endblock %}
+
+{% block main %}
+    <div class="content">
+
+        <h1>Reservations</h1>
+
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ reservation.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ reservation.nom }}</td>
+                </tr>
+                <tr>
+                    <th>Prenom</th>
+                    <td>{{ reservation.prenom }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ reservation.email }}</td>
+                </tr>
+                <tr>
+                    <th>Tel</th>
+                    <td>{{ reservation.tel }}</td>
+                </tr>
+                <tr>
+                    <th>NbPersonnes</th>
+                    <td>{{ reservation.nbPersonnes }}</td>
+                </tr>
+                <tr>
+                    <th>DateReservation</th>
+                    <td>{{ reservation.dateReservation ? reservation.dateReservation|date('d-m-Y H:i') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Contraintes</th>
+                    <td>{{ reservation.contraintes }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a class="connect" href="{{ path('app_admin_reservation_edit_index') }}">retour à la liste</a>
+
+        <a class="connect" href="{{ path('app_admin_reservation_edit_edit', {'id': reservation.id}) }}">Éditer</a>
+
+        {{ include('admin/admin_reservation_edit/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

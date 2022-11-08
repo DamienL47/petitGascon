@@ -46,10 +46,9 @@ class AdminReservationEditController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $reservationsRepository->add($reservations, true);
 
             $email = (new TemplatedEmail())
-                ->from('admin@moulinpetitgascon.fr')
+                ->from('contact@lemoulindupetitgascon.fr')
                 ->to($reservations->getEmail())
                 ->subject('Votre demande de réservation est validé par le restaurant')
                 ->htmlTemplate('admin/reservation/MailReservationOk.html.twig')
@@ -57,7 +56,7 @@ class AdminReservationEditController extends AbstractController
                     'reservation' => $reservations,
                 ]);
             $mailer->send($email);
-
+            $reservationsRepository->add($reservations, true);
             return $this->redirectToRoute('admin_dashboard', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -90,69 +89,72 @@ class AdminReservationEditController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $form->getData();
-            $reservationsRepository->add($reservation, true);
             if ($reservation->getStatusId() == '1') {
+
+                $email = (new TemplatedEmail())
+                    ->from('contact@lemoulindupetitgascon.fr')
+                    ->to($reservation->getEmail())
+                    ->subject('Votre demande de réservation à bien été prise en compte')
+                    ->htmlTemplate('admin/reservation/MailReservationOk.html.twig')
+                    ->context([
+                        'reservation' => $reservation,
+                        $form->getData(),
+                    ]);
                 try {
-                    $email = (new TemplatedEmail())
-                        ->from('admin@moulinpetitgascon.fr')
-                        ->to($reservation->getEmail())
-                        ->subject('Votre demande de réservation à bien été prise en compte')
-                        ->htmlTemplate('admin/reservation/MailReservationOk.html.twig')
-                        ->context([
-                            'reservation' => $reservation,
-                        ]);
                     $mailer->send($email);
 
                     $this->addFlash('success', 'Vous avez bien validé la réservation');
-                } catch (TransportExceptionInterface|LoaderError|RuntimeError|SyntaxError $e) {
+                } catch (TransportExceptionInterface $e) {
                     return new Response("Le mail d'attente n'a pas été envoyé". $e);
                 }
 
             } elseif ($reservation->getStatusId() == '2') {
+                $email = (new TemplatedEmail())
+                    ->from('contact@lemoulindupetitgascon.fr')
+                    ->to($reservation->getEmail())
+                    ->subject('Votre demande de réservation est en attente de validation par le restaurant')
+                    ->htmlTemplate('admin/reservation/MailReservationAttente.html.twig')
+                    ->context([
+                        'reservation' => $reservation,
+                        $form->getData(),
+                    ]);
                 try {
-                    $email = (new TemplatedEmail())
-                        ->from('admin@moulinpetitgascon.fr')
-                        ->to($reservation->getEmail())
-                        ->subject('Votre demande de réservation est en attente de validation par le restaurant')
-                        ->htmlTemplate('admin/reservation/MailReservationAttente.html.twig')
-                        ->context([
-                            'reservation' => $reservation,
-                        ]);
                     $mailer->send($email);
 
                     $this->addFlash('success', 'Vous avez bien mis en attente la réservation');
-                } catch (TransportExceptionInterface|LoaderError|RuntimeError|SyntaxError $e) {
+                } catch (TransportExceptionInterface $e) {
                     return new Response("Le mail d'attente n'a pas été envoyé". $e);
                 }
 
             } elseif ($reservation->getStatusId() == '3') {
+                $email = (new TemplatedEmail())
+                    ->from('contact@lemoulindupetitgascon.fr')
+                    ->to($reservation->getEmail())
+                    ->subject('Votre demande de réservation a été refusé par le restaurant')
+                    ->htmlTemplate('admin/reservation/MailReservationRefus.html.twig')
+                    ->context([
+                        'reservation' => $reservation,
+                        $form->getData(),
+                    ]);
                 try{
-                    $email = (new TemplatedEmail())
-                        ->from('admin@moulinpetitgascon.fr')
-                        ->to($reservation->getEmail())
-                        ->subject('Votre demande de réservation a été refusé par le restaurant')
-                        ->htmlTemplate('admin/reservation/MailReservationRefus.html.twig')
-                        ->context([
-                            'reservation' => $reservation,
-                        ]);
                     $mailer->send($email);
 
                     $this->addFlash('success', 'Vous avez refusé la réservation');
-                } catch (TransportExceptionInterface|LoaderError|RuntimeError|SyntaxError $e) {
+                } catch (TransportExceptionInterface $e) {
                 return new Response("Le mail de refus n'a pas été envoyé". $e);
             }
 
             } elseif ($reservation->getStatusId() == null) {
                 try {
                     $mailerService->send(
-                        "Nouvelle demande de contact client",
-                        "app@mailhog.local",
-                        "test@mailhog.local",
+                        "Nouvelle demande de réservation client",
+                        "contact@lemoulindupetitgascon.fr",
+                        $reservation->getEmail(),
                         "templatesMails/templateResa.html.twig", [
                             "nom" => $reservation->getNom(),
                             "prenom" => $reservation->getPrenom(),
                             "tel" => $reservation->getTel(),
-                            "email" => $reservation->getEmail(),
+                            "mail" => $reservation->getEmail(),
                             "Date de réservation" => $reservation->getDateReservation(),
                             "Nombre de personnes" => $reservation->getNbPersonnes(),
                             "Message" => $reservation->getContraintes(),
@@ -164,7 +166,7 @@ class AdminReservationEditController extends AbstractController
 
             } else {
                 $email = (new TemplatedEmail())
-                    ->from('admin@moulinpetitgascon.fr')
+                    ->from('contact@lemoulindupetitgascon.fr')
                     ->to($reservation->getEmail())
                     ->subject('Votre demande de réservation a été modifié par le restaurant')
                     ->htmlTemplate('admin/reservation/MailReservationModifier.html.twig')
@@ -175,6 +177,7 @@ class AdminReservationEditController extends AbstractController
 
                 $this->addFlash('success', 'Vous avez bien mis en attente la réservation');
             }
+            $reservationsRepository->add($reservation, true);
             return $this->redirectToRoute('admin_dashboard');
 
         }

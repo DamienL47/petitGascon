@@ -1,0 +1,48 @@
+{% extends 'admin/home.html.twig' %}
+
+{% block title %}Plats{% endblock %}
+
+{% block main %}
+    <div class="content">
+
+        <h1>Liste des Plats</h1>
+
+        <a class="connect" href="{{ path('admin_app_met_new') }}">Créer un plat</a>
+
+        <table class="table">
+            <thead>
+                <tr class="tableau">
+                    <th>Id</th>
+                    <th>Titre</th>
+                    <th>Prix</th>
+                    <th>Description</th>
+                    <th>Menu</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for met in mets %}
+                <tr class="tableau">
+                    <td>{{ met.id }}</td>
+                    <td>{{ met.titre }}</td>
+                    <td>{{ met.prix }}</td>
+                    <td>{{ met.description }}</td>
+                    <td>
+                        {% for menu in met.menus %}
+                            <p>{{ menu.titre }}</p>
+                        {% endfor %}
+                    </td>
+                    <td class="bouton-tableau">
+                        <a class="connect" href="{{ path('admin_app_met_show', {'id': met.id}) }}">Voir</a>
+                        <a class="connect" href="{{ path('admin_app_met_edit', {'id': met.id}) }}">Editer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Aucun plat enregistré</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

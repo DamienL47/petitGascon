@@ -1,0 +1,67 @@
+{% extends 'base.html.twig'%}
+
+{% block body %}
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v15.0" nonce="8wCLBRwp"></script>
+    {% block main %}
+        <div class="container_menu">
+        {% for menu in menus %}
+            {% if menu.isPublished %}
+            <div class="menu">
+                {% if menu.image %}
+                    <img class="image_menu" src="{{ asset('uploads/images/' ~ menu.image)}}" alt="Image du menu">
+                {% endif %}
+                <div class="fb-share-button" data-href="https://127.0.0.1:8000/menu/menu" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2F127.0.0.1%3A8000%2Fmenu%2Fmenu&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Partager</a></div>
+                {% if menu.prix %}
+                    <h1> {{ menu.titre }} {{ menu.prix }} </h1>
+                    {% if menu.description %}
+                        <p> {{ menu.description }}</p>
+                    {% endif %}
+                {% else %}
+                    <h1> {{ menu.titre }}</h1>
+                    {% if menu.description %}
+                        <p> {{ menu.description }}</p>
+                    {% endif %}
+                {% endif %}
+                {% if entree %}
+                    <h3>{{ entree.titre }}</h3>
+                    {% for met in menu.idMet %}
+                        {% if met.categoryId == '1' %}
+                            {% if met.prix %}
+                                <p> {{ met.titre }} {{ met.prix }} </p>
+                            {% else %}
+                                <p> {{ met.titre }} </p>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                {% if plat %}
+                    <h3>{{ plat.titre }}</h3>
+                    {% for met in menu.idMet %}
+                        {% if met.categoryId == '2' %}
+                            {% if met.prix %}
+                                <p> {{ met.titre }} {{ met.prix }} </p>
+                            {% else %}
+                                <p> {{ met.titre }} </p>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                {% if dessert %}
+                    <h3>{{ dessert.titre }}</h3>
+                    {% for met in menu.idMet %}
+                        {% if met.categoryId == '3' %}
+                            {% if met.prix %}
+                                <p> {{ met.titre }} {{ met.prix }} </p>
+                            {% else %}
+                                <p> {{ met.titre }} </p>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+    {% endblock %}
+{% endblock %}

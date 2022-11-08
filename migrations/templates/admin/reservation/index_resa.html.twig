@@ -1,0 +1,47 @@
+{% extends 'admin/home.html.twig'%}
+
+{% block main %}
+    <div class="content">
+        <h3>Liste des réservations</h3>
+        <div class="listContact">
+            <table class="table">
+                <thead>
+                <tr class="tableau">
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Tel</th>
+                    <th>Email</th>
+                    <th>Date de réservation</th>
+                    <th>Nombre de personne</th>
+                    <th>Message</th>
+                    <th>Gestion résas</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for reservation in reservations %}
+                    <tr class="tableau">
+                        <td>{{ reservation.id }}</td>
+                        <td>{{ reservation.nom }}</td>
+                        <td>{{ reservation.prenom }}</td>
+                        <td>{{ reservation.tel }}</td>
+                        <td>{{ reservation.email }}</td>
+                        <td>{{ reservation.dateReservation ? reservation.dateReservation|date('d-m-Y H:i') : '' }}</td>
+                        <td>{{ reservation.nbPersonnes }}</td>
+                        <td>{{ reservation.contraintes }}</td>
+                        {% if reservation.statusId == '1' %}
+                            <td><p>Validé</p></td>
+                        {% elseif reservation.statusId == '2'%}
+                            <td><p>En attente</p></td>
+                        {% elseif reservation.statusId == null %}
+                            <td><p>En attente</p></td>
+                        {% elseif reservation.statusId == '3' %}
+                            <td><p>Refusé</p></td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

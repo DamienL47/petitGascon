@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demande de contact client</title>
+    <style>
+        img {
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+        }
+        .boxContentMail {
+            width: 80vw;
+            margin: auto;
+            border: 1px solid black;
+            border-radius: 20px;
+            background-color: whitesmoke;
+        }
+        .contentMail {
+            text-align: center;
+        }
+    </style>
+</head>
+<header>
+    <img width="50px" src="{{ asset('assets/img/logo_petit_gascon.png') }}" alt="Logo Restaurant Le Moulin du Petit Gascon">
+    <h1>Nouvelle demande de contact Client</h1>
+</header>
+<body>
+    <div class="boxContentMail">
+        <div class="contentMail">
+            <h2>{{ nom }}</h2>
+            <h3>{{ prenom }}</h3>
+            <a href="{{ tel }}">{{ tel }}</a>
+            <a href="{{ email }}">{{ email }}</a>
+            <p>{{ sujet }}</p>
+            <p>{{ message }}</p>
+        </div>
+    </div>
+<p>Attention, ce mail est généré automatiquement, merci de ne pas y répondre.</p>
+<p> Pour répondre à votre client veuillez cliquer sur son adresse mail ou sur son numéro de téléphone pour le contacter directement par téléphone</p>
+</body>
+</html>

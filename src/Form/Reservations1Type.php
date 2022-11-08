@@ -41,7 +41,7 @@ class Reservations1Type extends AbstractType
                 'required' => false,
                 'empty_data' => '',
             ])
-//            ->add('captcha', ReCaptchaType::class)
+            ->add('captcha', ReCaptchaType::class)
             ->add('status_id', EntityType::class, [
                 'choice_value' => function (?Status $entity) {
                     return $entity ? $entity->getId() : '2';

@@ -1,0 +1,65 @@
+{% extends 'admin/home.html.twig' %}
+
+{% block title %}Menus{% endblock %}
+
+{% block main %}
+    <div class="content">
+            {% for message in app.flashes('success') %}
+                <div class="message_success">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+                <div class="message_error">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
+
+        <h1>Liste des Menus</h1>
+
+        <a class="connect" href="{{ path('admin_app_menu_new') }}">Créer un nouveau menu</a>
+
+        <table class="table">
+            <thead>
+                <tr class="tableau">
+                    <th>Id</th>
+                    <th>Titre</th>
+                    <th>Prix</th>
+                    <th>Description</th>
+                    <th>Publié</th>
+                    <th>Image</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for menu in menus %}
+                <tr class="tableau">
+                    <td>{{ menu.id }}</td>
+                    <td>{{ menu.titre }}</td>
+                    <td>{{ menu.prix }}</td>
+                    <td>{{ menu.description }}</td>
+                    {% if menu.isPublished %}
+                        <td> Publié </td>
+                    {% else %}
+                        <td> Non Publié </td>
+                    {% endif %}
+                        <td>
+                        {% if menu.image %}
+                            <img class="mini" src="{{ asset('uploads/images/') ~ menu.image }}" alt="Image du menu">
+                        {% endif %}
+                        </td>
+                    <td class="bouton-tableau">
+                        <a class="connect" href="{{ path('admin_app_menu_show', {'id': menu.id}) }}">Voir</a>
+                        <a class="connect" href="{{ path('admin_app_menu_edit', {'id': menu.id}) }}">Editer</a>
+                        <a class="connect" href="{{ path('admin_menu_pdf', {'id': menu.id}) }}">Imprimer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">Aucun menu disponible</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'admin/home.html.twig' %}
+
+{% block main %}
+    <div class="content">
+        <h1>Demande de réservation au nom de {{ reservation.nom }} {{ reservation.prenom }}</h1>
+        <div class="blocForm">
+            <h2>Contenu de la demande de réservation</h2>
+            <p><strong>Nom : </strong> {{ reservation.nom }}</p>
+            <p><strong>Prénom :</strong> {{ reservation.prenom }}</p>
+            <p><strong>Date de réservation : </strong>{{ reservation.dateReservation ? reservation.dateReservation|date('d-m-Y H:i') : '' }}</p>
+            <p><strong>Nombre de personnes :</strong>{{ reservation.nbPersonnes }}</p>
+            <p><strong>Demande spécifique :</strong>{{ reservation.contraintes }}</p>
+            <strong>Téléphone :</strong><a href="{{ reservation.tel }}">{{ reservation.tel }}</a>
+            <strong>Mail :</strong><a href="mailto:{{reservation.email}}">{{reservation.email }}</a>
+            <div class="statusResa">
+                <a class="connect" href="{{ path('reservation_valider' , { id: reservation.id }) }}">Valider la réservation</a>
+                <a class="connect orange" href="{{ path('reservation_attente' , { id: reservation.id }) }}">Mettre en attente la réservation</a>
+                <a class="connect red" href="{{ path('reservation_refus' , { id: reservation.id }) }}">Refuser la réservation</a>
+        </div>
+    </div>
+{% endblock %}
+

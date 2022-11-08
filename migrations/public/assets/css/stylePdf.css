@@ -1,0 +1,48 @@
+@font-face {
+    font-family: "Tangerine-regular";
+    src: url("../font/Tangerine/Tangerine-Regular.ttf");
+}
+@font-face {
+    font-family: "Tangerine-bold";
+    src: url("../font/Tangerine/Tangerine-bold.ttf");
+}
+
+.logo_resto {
+    position: absolute;
+    top: 1900px;
+    left: 51%;
+    transform: translate(-50%, -50%);
+    opacity: 0.08;
+}
+
+.image_menu_pdf {
+    width: 80%;
+    height: 500px;
+    margin-bottom: 80px;
+}
+
+.menu {
+    width: 100%;
+    font-family: Tangerine-regular, "Comic Sans MS", sans-serif;
+    text-align: center;
+    line-height: 20px;
+}
+.titre {
+    font-size: 150px;
+    font-family: Tangerine-bold, "Comic Sans MS", sans-serif;
+}
+.entree, .plat, .dessert {
+    font-size: 80px;
+}
+
+span {
+    font-family: Tangerine-bold, "Comic Sans MS", sans-serif;
+    font-size: 110px;
+    color: limegreen;
+    line-height: 50px;
+}
+
+.mention {
+    position: absolute;
+    bottom: 50px;
+}

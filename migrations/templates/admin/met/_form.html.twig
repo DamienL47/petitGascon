@@ -1,0 +1,24 @@
+{{ form_start(form, {'attr': {'class': 'champsForm'}}) }}
+
+    {{ form_label(form.category_id) }}
+    {{ form_widget(form.category_id) }}
+    {{ form_errors(form.category_id) }}
+
+    {{ form_label(form.titre) }}
+    {{ form_widget(form.titre) }}
+    {{ form_errors(form.titre) }}
+
+    {{ form_label(form.prix) }}
+    {{ form_widget(form.prix) }}
+    {{ form_errors(form.prix) }}
+
+    {{ form_label(form.description) }}
+    {{ form_widget(form.description) }}
+    {{ form_errors(form.description) }}
+
+    {{ form_label(form.menu_id) }}
+    {{ form_widget(form.menu_id) }}
+    {{ form_errors(form.menu_id) }}
+
+    <button class="connect">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}

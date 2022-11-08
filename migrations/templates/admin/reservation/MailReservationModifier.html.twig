@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Votre réservation</title>
+</head>
+<body>
+<h1>Votre réservation a été modifié par le restaurant suite à votre demande.</h1>
+
+<h2>Restaurant "Le moulin du petit gascon"</h2>
+
+<p>Cher client,</p>
+<p>Nous sommes ravie de vous informer que la modification de votre réservation à bien été prise en compte selon votre demande.</p>
+<p>Votre table vous sera réservé selon vos souhaits.</p>
+
+<p>Pour rappel, voici les informations prises en compte: </p>
+
+<p><strong>Nom : </strong> {{ reservation.nom }}</p>
+<p><strong>Prénom :</strong> {{ reservation.prenom }}</p>
+<p><strong>Date de réservation : </strong>{{ reservation.dateReservation ? reservation.dateReservation|date('Y-m-d H:i') : '' }}</p>
+<p><strong>Nombre de personnes :</strong>{{ reservation.nbPersonnes }}</p>
+<p><strong>Demande spécifique :</strong>{{ reservation.contraintes }}</p>
+<strong>Téléphone :</strong><a href="{{ reservation.tel }}">{{ reservation.tel }}</a>
+<strong>Mail :</strong><a href="mailto:{{reservation.email}}">{{reservation.email }}</a>
+
+<p>Pour toutes nouvelles modifications merci de nous contacter directement au 05.81.68.18.53.</p>
+
+<p>Toutes l'équipe du restaurant vous souhaite une excellente journée.</p>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+{% extends 'admin/home.html.twig' %}
+
+{% block title %}Edition Catégorie{% endblock %}
+
+{% block main %}
+    <div class="content">
+        <h1>Modification de la catégorie</h1>
+
+        {{ include('admin/category/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+        <a class="connect" href="{{ path('admin_app_category_index') }}">Retour à la liste </a>
+
+        {{ include('admin/category/_delete_form.html.twig') }}
+    </div>
+{% endblock %}
